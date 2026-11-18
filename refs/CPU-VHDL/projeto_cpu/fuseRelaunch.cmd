@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -o "/home/tage/CompDig/projeto_final/CPU-VHDL/projeto_cpu/testbench_isim_beh.exe" -prj "/home/tage/CompDig/projeto_final/CPU-VHDL/projeto_cpu/testbench_beh.prj" "work.testbench" 
