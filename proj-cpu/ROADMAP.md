@@ -1,0 +1,74 @@
+# Roadmap da CPU de 8 bits em FPGA
+
+## Diagnóstico
+
+O professor forneceu três arquivos em `proj-cpu`. A RAM já tem a capacidade, a interface e o comportamento de leitura e escrita descritos no [ENUNCIADO.pdf](../ENUNCIADO.pdf). O rascunho da CPU oferece um esqueleto da unidade de controle e do banco de registradores. O arquivo de texto dá exemplos de formatação para o LCD. O trabalho restante é completar a CPU e a ALU, carregar a imagem do programa, integrar os periféricos e validar o conjunto. A ISA da seção 2 do enunciado é a referência para a implementação.
+
+A avaliação abaixo foi feita por leitura dos PDFs, fontes e logs locais. A compilação, a simulação e a validação em placa ainda estão pendentes. Toda implementação, código reaproveitado, ferramentas, programas, testes e documentação produzidos daqui em diante ficam em `proj-cpu`, com caminhos internos ao projeto para que a pasta possa ser arquivada e usada sozinha.
+
+### Material fornecido pelo professor
+
+| Arquivo em `proj-cpu` | O que já atende | O que falta |
+| --- | --- | --- |
+| [`RAM_8x256.vhd`](RAM_8x256.vhd) | Entidade e arquitetura completas. RAM única de 256 × 8 bits, `POS_255` ligado a `ram(255)` e borda de descida para escrita e registro do endereço de leitura. | Reaproveitar o módulo. O inicializador contém apenas zeros. Inserir a imagem de programa, integrar o barramento da CPU e verificar a temporização em simulação e a inferência no sintetizador da placa. |
+| [`cpu.vhd`](cpu.vhd) | Barramento de RAM de 8 bits, banco de quatro registradores, valor inicial de `SP = 254` e estados de busca, decodificação e execução. | Completar a unidade de controle e o caminho de dados. `RESET`, `RA`, `IR`, `PC` e `MBR` são referenciados sem declaração e `MAR` ainda precisa ser implementado. `WE` e `RAM_DIN` estão sem atribuição. A entidade `work.alu` está ausente e o sinal `ALU_FLAGS` tem cinco bits para uma ISA com seis flags. |
+| [`character_to_slv_v2.txt`](character_to_slv_v2.txt) | Exemplos de conversão de texto em bytes ou nibbles, tabela inicial de mnemônicos e algoritmo de conversão BCD. | Adaptar os trechos em um módulo de formatação e integrar a um controlador de LCD. A conversão para vetor de bytes usa um índice fora do vetor em strings comuns de 16 caracteres. A função BCD depende de `decimal_size`, ausente no trecho. A tabela é parcial, contém mnemônicos de outra revisão e atribui `halt` a `0xF0`, que é `nop` na ISA atual. |
+
+Os arquivos fornecidos em `proj-cpu` são os pontos de partida para a implementação. Ainda faltam a ALU, o controlador físico do LCD, o montador Python mencionado na seção 4.3, os testbenches e as constraints da placa alvo.
+
+### Exemplos e projetos de referência
+
+| Material existente | O que já existe | Reaproveitamento proposto |
+| --- | --- | --- |
+| [`NASM`](../NASM) | Três exemplos em assembly e um `nasm.exe`. `simple_a.asm` é um laço de incremento. `test.asm` combina aritmética, acesso à RAM e salto. `testinst.asm` reúne instruções para testes de codificação. | Usar os `.asm` como referência para os testes em `proj-cpu/programs/`. Ajustar diretivas, endereços e dados iniciais à ISA atual e conferir os bytes com o montador do projeto. |
+| [`refs/CPU-VHDL`](../refs/CPU-VHDL) | O [PDF](../refs/CPU-VHDL/projeto.pdf) especifica uma CPU de 16 bits, 16 registradores, 8.192 palavras e outra ISA. A [UC](../refs/CPU-VHDL/projeto_cpu/control_unit_mod.vhd) deixa `B` e `JMP` sem ação e o [topo](../refs/CPU-VHDL/projeto_cpu/cpu_module.vhd) tem caminhos de escrita e da ALU incompletos. O [LCD](../refs/CPU-VHDL/projeto_cpu/lcd_mod.vhd) usa uma tabela fixa parcial e recebe `pos_255` sem exibi-lo. O projeto ISE tem como alvo um Spartan-3E XC3S500E. | Consultar a estrutura modular, o padrão de banco com duas leituras, a organização do projeto e os sinais do LCD. Usar o modelo da placa antiga apenas como pista. O núcleo, o mapa de E/S, os testes e a configuração da placa exigem adequação. |
+| [`refs/8-bit-processor-FPGA-VHDL`](../refs/8-bit-processor-FPGA-VHDL) | A [tese](../refs/8-bit-processor-FPGA-VHDL/Releases/OmerCanVURAL_Thesis_Public.pdf) e o VHDL mostram uma CPU de 8 bits com dois registradores, quatro flags, outra ISA e ROM de programa separada da RAM e das portas de E/S. A [UC](../refs/8-bit-processor-FPGA-VHDL/control_unit.vhd) decodifica um subconjunto dos opcodes declarados. O [testbench](../refs/8-bit-processor-FPGA-VHDL/testbench/tb_computer.vhd) dá estímulos sem asserções de resultado. | Consultar o sequenciamento de `PC`, `MAR`, `IR` e da leitura síncrona, além da separação entre UC e caminho de dados. A implementação, a imagem de programa e a verificação precisam seguir o enunciado atual. |
+
+## 1. Fixar a ISA e preparar a carga do programa
+
+- [ ] Documentar a tabela da seção 2.2, com `opcode = bits[7:4]`, `Rx = bits[3:2]` e `Ry` ou função em `bits[1:0]`. Os códigos de `Ra`, `Rb`, `Rc` e `Rd` são `00`, `01`, `10` e `11`, respectivamente. Manter CPU, montador e LCD de acordo com essa tabela.
+- [ ] Obter e validar o montador Python citado no PDF, se estiver disponível com a disciplina. Caso contrário, implementar em `tools/` um montador compatível com a ISA e com o formato de inicialização da seção 4.3. Verificar operandos, endereços e tamanho da imagem. Suportar rótulos e documentar a sintaxe aceita. Conferir as diretivas `.org`, `.equ`, `.byte` e referências `@rótulo` dos exemplos antes de adaptá-los.
+- [ ] Gerar o inicializador `signal ram : RAM_t := (...)` no formato de `RAM_8x256.vhd`, com entradas indexadas e `others => (others => '0')`. Documentar como trocar a imagem, simular e sintetizar novamente, inclusive quando o professor fornecer diretamente o inicializador do programa surpresa.
+- [ ] Fixar casos de teste a partir do próprio PDF. `add Rc, Rb` gera `0x09`, `dec Rd` gera `0x2D`, e `jmp 64` gera `0xC0 0x40`. A imagem da seção 4.3 é `83 0A 82 FF FF` e deve deixar `MEM[255] = 10` antes de parar.
+
+## 2. Implementar e verificar a ALU
+
+- [ ] Criar ALU combinacional de 8 bits com `ALU_A`, `ALU_B`, `CMD`, resultado e seis flags. Alinhar a interface da ALU com a instância `u_alu` em `cpu.vhd`, incluindo a largura de `CMD` e das flags. Implementar `add`, `sub`, `inc`, `dec`, `and`, `or`, `not`, `xor`, `rol`, `ror`, `lsl` e `lsr`. As operações aritméticas e lógicas da CPU ocorrem dentro da ALU. Os incrementos e decrementos de `PC` e `SP` são as exceções previstas.
+- [ ] Usar `B = 1` em `inc` e `dec` e `B = 0` em `not`, `rol`, `ror`, `lsl` e `lsr`. Calcular `ZERO` e `NEGATIVE` pelo resultado, e `EQUAL`, `GREATER` e `SMALLER` comparando `A` e `B` como `unsigned`.
+- [ ] Calcular `OVERFLOW` como carry na soma e no incremento, borrow na subtração e no decremento, bit expulso em deslocamentos e rotações, e zero em `and`, `or`, `xor` e `not`. Para carry e borrow, estender os operandos com zero e operar em nove bits.
+- [ ] Criar testbench da ALU com asserções para todas as operações e flags. Cobrir `255 + 1`, `0 - 1`, `3 - 5`, `200 + 100`, `200 - 10`, igualdade e deslocamentos/rotações com os dois valores possíveis do bit expulso.
+
+## 3. Integrar a UC, o caminho de dados e a RAM
+
+- [ ] Validar `RAM_8x256.vhd` isoladamente e manter `CLK`, `DIN`, `ADDR`, `WE`, `DOUT` e `POS_255`. Verificar a imagem inicial, a captura do novo endereço na borda de descida, a escrita com `WE` e a atualização de `POS_255` após uma escrita em `0xFF`.
+- [ ] Completar `cpu.vhd` aproveitando o banco `REG` e o esqueleto da FSM. Declarar `RESET`, `IR`, `PC`, `MBR` e `MAR`, manter os registradores em 8 bits e substituir a referência a `RA` no reset por uma atribuição ao banco. Corrigir a comparação escalar `IR(7) = "0"` e a seleção `ALU_CMD`, que hoje tenta atribuir cinco bits a quatro e mistura os bits de `Ry` com o comando nas operações binárias. Decodificar também as combinações reservadas. Ao acionar reset pela chave, garantir `PC = 0`, `SP = 254`, flags zeradas e UC em `fetch`, com execução ao soltar a chave. Documentar a inicialização dos demais registradores.
+- [ ] Instanciar a RAM e completar `fetch`, `decode`, `execute` e `write`, com ciclos adicionais onde a leitura exigir. Usar `MAR` para `RAM_ADDR` e `MBR` para dados. Aplicar o endereço, esperar a borda de descida e só então capturar `DOUT` em `MBR` ou `IR`. Acionar `RAM_DIN` e `WE` de modo que cada escrita ocorra uma vez, com endereço e dado estáveis, inclusive quando a CPU estiver em ritmo reduzido. Conferir `WE` durante reset e `halt`.
+- [ ] Implementar `ldi`, `st` e `jmp` com uma leitura extra em `PC + 1`. Em `ldi`, o complemento é o valor a carregar. Em `st`, é o endereço a escrever. Ambos avançam o PC em dois bytes. Em `jmp`, o complemento passa a ser o PC. Manter o opcode em `IR` enquanto o complemento é lido e disponibilizar o complemento ao LCD.
+- [ ] Implementar `ldr`, `str`, `mov`, `push` e `pop`. A RAM serve a instruções e dados. `ldr` e `str` endereçam pelo conteúdo de `Ry`. `push` escreve em `MEM[SP]` e depois decrementa `SP`. `pop` lê `MEM[SP+1]` e incrementa `SP`. A posição `0xFF` espelha o valor da RAM para o LCD.
+- [ ] Implementar `jmpr` e os nove branches `bz`, `bnz`, `bcs`, `bcc`, `beq`, `bneq`, `bgt`, `blt` e `bneg`. O alvo vem de `Rx` e a condição vem da última instrução de ALU. Usar `ZERO` em `bz`/`bnz`, `OVERFLOW` em `bcs`/`bcc`, `EQUAL` em `beq`/`bneq`, `GREATER` em `bgt`, `SMALLER` em `blt` e `NEGATIVE` em `bneg`. Branch não tomado avança `PC` em um byte.
+- [ ] Gravar as seis flags em flip-flops da UC ao fim de `execute` de cada instrução da ALU. Preservá-las durante memória, `mov`, saltos, `nop`, opcodes reservados e `halt`.
+- [ ] Implementar `nop` (`0xF0`) e todos os opcodes reservados como avanço de um byte sem outros efeitos. Em `halt` (`0xFF`), manter `PC`, `IR`, flags, registradores e memória estáveis e permitir reiniciar com reset. Conferir o avanço de `PC` conforme a largura de 8 bits.
+
+## 4. Integrar clock, LEDs, LCD e placa
+
+- [ ] Confirmar modelo, FPGA, pinagem, polaridades e interface do LCD da placa disponível. Preparar constraints para o clock de 50 MHz, a chave de reset, os LEDs e o LCD, no formato aceito pela ferramenta da placa.
+- [ ] Reduzir o ritmo da CPU para aproximadamente dois segundos por **instrução completa**, incluindo instruções de dois bytes e acessos adicionais à RAM. Manter o LCD no clock de 50 MHz. Usar divisor ou `clock enable`, preservar a janela entre a borda da CPU e a borda de descida da RAM e permitir parametrização rápida no testbench.
+- [ ] Ligar `LD7 → CLOCK`, `LD6 → ZERO`, `LD5 → NEGATIVE`, `LD4 → OVERFLOW`, `LD3 → EQUAL`, `LD2 → GREATER`, `LD1 → SMALLER`, mantendo `LD0` livre. Com `clock enable`, gerar em `LD7` uma indicação de clock perceptível na escala da execução. As seis flags exibidas devem vir dos flip-flops da UC.
+- [ ] Adaptar os trechos de `character_to_slv_v2.txt` para formatar as duas linhas. Corrigir os índices da conversão de texto e completar a conversão de 8 bits para três dígitos decimais, incluindo zeros à esquerda. Na linha 1, formatar o `IR` conforme a ISA, com registradores e byte adicional em hex quando houver. Conferir `0xF0` como `NOP`, `0xFF` como `HALT` e o tratamento de opcodes reservados. Na linha 2, formatar `POS_255` como em `MEM[255] = 028` e verificar também `000` e `255`.
+- [ ] Implementar o controlador do LCD conforme o hardware da placa, incluindo inicialização, temporização de escrita e seleção das duas linhas. Integrar no clock de 50 MHz e manter a instrução exibida estável durante a leitura do complemento, dos operandos ou dos dados na RAM.
+- [ ] Sintetizar, implementar e programar a FPGA. Verificar a RAM inferida e sua inicialização, as constraints de pinos e clock, o tempo por instrução e a correspondência entre LCD, LEDs e execução em placa.
+
+## 5. Validar a CPU e preparar a apresentação
+
+- [ ] Criar um testbench integrado com asserções e com instruções e dados na imagem inicial da RAM. Conferir `PC`, `IR`, registradores, `SP`, flags, escritas e `MEM[255]`. Cobrir as 32 instruções da tabela, as codificações reservadas, os dois resultados de cada branch, a latência da RAM, `push`/`pop` em sequência, `halt` e retomada com reset. Usar bytes esperados calculados a partir do PDF em parte dos testes, para detectar erros compartilhados pelo montador e pela CPU.
+- [ ] Montar o exemplo da seção 4.3 e salvar em `proj-cpu/programs/` os testes adaptados a partir de `NASM`. Ajustar o ponto de entrada ao reset com `PC = 0`, reservar dados e código em endereços adequados e garantir que os casos escolhidos sejam alcançáveis. Nas instruções de dois bytes, verificar que o complemento nunca é executado como opcode, inclusive quando coincide com `0xFF`. Conferir que as flags persistem ao intercalar instruções de memória, movimento e salto.
+- [ ] Criar um programa comentado para a demonstração, por exemplo Fibonacci, que escreva resultados em `MEM[255]` e mostre mudanças de flags. Gerar a imagem e preparar uma tabela por instrução executada, com o `PC` da instrução, texto da linha 1, `Z`, `N`, `OVF`, `EQ`, `GT`, `SM` e `MEM[255]` exibida na linha 2. Conferir a tabela primeiro em simulação e depois na placa.
+- [ ] Ensaiar a troca por uma segunda imagem compatível com a ISA, inclusive pelo procedimento de substituir apenas o inicializador e sintetizar novamente. Preparar o roteiro para executar o programa demonstrativo e carregar o programa surpresa caso seja solicitado.
+
+## 6. Fechar os entregáveis
+
+- [ ] Produzir o relatório em PDF, com cerca de 15 páginas no mínimo conforme a seção 4.1. Incluir diagrama do caminho de dados, descrição detalhada das unidades, FSM da UC, assembly comentado, explicação dos testes e do funcionamento do LCD e dos LEDs. Registrar a execução em placa com fotos e/ou vídeo. Se for usado YouTube, publicar como não listado conforme o enunciado.
+- [ ] Arquivar sob `proj-cpu` um ZIP com o relatório em PDF e a pasta do projeto com fontes VHDL, constraints, testbench pronto para simulação, bibliotecas necessárias e arquivos de programa ou ferramentas usados para reproduzir a carga. Excluir os produtos temporários do simulador e do sintetizador. Em ISE, os comandos indicados são `Project → Cleanup Project Files...` e `Project → Archive...`.
+- [ ] Reabrir a cópia extraída do ZIP e conferir se compila e simula com os arquivos empacotados, se a imagem correta está inicializada e se os caminhos são portáveis. Entregar pelo Moodle na data informada pela disciplina.
+
+A estrutura sugerida usa `rtl/` para o VHDL, `tb/` para os testbenches, `tools/` para o montador e a geração das imagens, `programs/` para os exemplos e imagens, `constraints/` para a placa e `docs/` para o relatório, o roteiro e a tabela da demonstração.
