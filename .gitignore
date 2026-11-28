@@ -1,0 +1,24 @@
+# Saidas das ferramentas (tools/ise.sh e ISE)
+proj-cpu/build/
+__pycache__/
+# Produtos do Xilinx ISE (regenerados a partir de .vhd/.ucf/.xise)
+proj-cpu/ise/*
+!proj-cpu/ise/cpu8.xise
+!proj-cpu/ise/cpu8.gise
+*.ngc
+*.ngd
+*.ncd
+*.pcf
+*.bit
+*.bgn
+*.syr
+*.wdb
+*.exe
+!NASM/nasm.exe
+_xmsgs/
+isim/
+xst/
+iseconfig/
+xlnx_auto_0_xdb/
+_ngo/
+*.log

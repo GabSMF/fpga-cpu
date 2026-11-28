@@ -18,6 +18,8 @@ entity cpu is
         -- Saidas para interface com usuario (LEDs e futuro LCD)
         IR_OUT    : out std_logic_vector(7 downto 0);
         ARG_OUT   : out std_logic_vector(7 downto 0);
+        IR_OK     : out std_logic;  -- '1' depois do primeiro fetch (IR_OUT valido)
+        ARG_OK    : out std_logic;  -- '1' depois que o byte adicional foi lido (ARG_OUT valido)
         FLAG_Z    : out std_logic;
         FLAG_N    : out std_logic;
         FLAG_OVF  : out std_logic;
@@ -52,6 +54,8 @@ architecture Behavioral of cpu is
     signal MAR : std_logic_vector(7 downto 0) := (others => '0');
     signal MBR : std_logic_vector(7 downto 0) := (others => '0');
     signal ARG : std_logic_vector(7 downto 0) := (others => '0'); -- Byte adicional (para LCD)
+    signal ir_ok_reg  : std_logic := '0'; -- IR ja recebeu uma instrucao desde o reset
+    signal arg_ok_reg : std_logic := '0'; -- ARG corresponde a instrucao atual
 
     -- Controle de escrita na RAM
     signal we_reg : std_logic := '0';
@@ -115,6 +119,8 @@ begin
                 MAR     <= (others => '0');
                 MBR     <= (others => '0');
                 ARG     <= (others => '0');
+                ir_ok_reg  <= '0';
+                arg_ok_reg <= '0';
                 we_reg  <= '0';
                 alu_a   <= (others => '0');
                 alu_b   <= (others => '0');
@@ -139,6 +145,8 @@ begin
                     -- =========================================================
                     when S_FETCH =>
                         IR     <= RAM_DOUT;
+                        ir_ok_reg  <= '1';
+                        arg_ok_reg <= '0'; -- byte adicional ainda nao foi lido
                         we_reg <= '0';
                         state  <= S_DECODE1;
 
@@ -240,7 +248,8 @@ begin
                     -- 3. DECODE2: captura dado lido da RAM em MBR (apos borda de descida)
                     -- =========================================================
                     when S_DECODE2 =>
-                        we_reg <= '0';
+                        we_reg     <= '0';
+                        arg_ok_reg <= '1'; -- ARG atualizado neste estado (ldi/st/jmp)
 
                         case op is
                             when "1000" =>
@@ -437,6 +446,8 @@ begin
     -- Saidas de observacao / interface com usuario
     IR_OUT   <= IR;
     ARG_OUT  <= ARG;
+    IR_OK    <= ir_ok_reg;
+    ARG_OK   <= arg_ok_reg;
     FLAG_Z   <= f_z;
     FLAG_N   <= f_n;
     FLAG_OVF <= f_ovf;
