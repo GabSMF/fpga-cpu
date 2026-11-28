@@ -22,3 +22,6 @@ iseconfig/
 xlnx_auto_0_xdb/
 _ngo/
 *.log
+# ZIP de entrega (tools/empacotar.sh)
+proj-cpu/entrega/
+proj-cpu/docs/relatorio.html

@@ -1,5 +1,8 @@
 # Passo a Passo de Teste — CPU 8 bits (Spartan-3E Starter Kit)
 
+> **Atualizado em 27/11/2026.** Este roteiro é do primeiro teste (25/11, sem LCD) e foi mantido como histórico. O projeto agora tem LCD, projeto ISE pronto (`proj-cpu/ise/cpu8.xise`) e um roteiro completo em [`proj-cpu/docs/TESTE_NA_PLACA.md`](proj-cpu/docs/TESTE_NA_PLACA.md). O programa gravado em `rtl/RAM_8x256.vhd` agora é o Fibonacci; o programa deste roteiro é `proj-cpu/programs/demo_flags.asm` (bitstream em `proj-cpu/build/bits/demo_flags.bit`).
+
+
 ## 1. Criar o projeto no Xilinx ISE
 1. Abra o **Xilinx ISE Project Navigator** → **File → New Project**.
 2. Configure o dispositivo da placa:
