@@ -1,0 +1,34 @@
+# ==============================================================================
+# Constraints (UCF) para Spartan-3E FPGA Starter Kit (xc3s500e-4fg320)
+# Pinagem verificada no User Guide UG230 (Appendix B / Chapters 2 e 3).
+# ==============================================================================
+
+# Clock de 50 MHz da placa
+NET "CLK_50MHZ" LOC = "C9" | IOSTANDARD = LVCMOS33 ;
+NET "CLK_50MHZ" PERIOD = 20.0ns HIGH 40%;
+
+# Chave SW0 para Reset (1 = reset ativo, 0 = CPU em execucao)
+NET "RESET" LOC = "L13" | IOSTANDARD = LVTTL | PULLUP ;
+
+# 8 LEDs discretos conforme ordem do Enunciado (Secao 3.1):
+# LD7=CLOCK, LD6=ZERO, LD5=NEGATIVE, LD4=OVERFLOW,
+# LD3=EQUAL, LD2=GREATER, LD1=SMALLER, LD0=livre
+NET "LED<7>" LOC = "F9"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+NET "LED<6>" LOC = "E9"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+NET "LED<5>" LOC = "D11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+NET "LED<4>" LOC = "C11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+NET "LED<3>" LOC = "F11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+NET "LED<2>" LOC = "E11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+NET "LED<1>" LOC = "E12" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+NET "LED<0>" LOC = "F12" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+
+# LCD 16x2 (UG230, cap. 5). Dados de 4 bits compartilhados com a StrataFlash:
+# SF_CE0 = 1 desliga a StrataFlash e libera o barramento para o LCD.
+NET "LCD_E"    LOC = "M18" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW ;
+NET "LCD_RS"   LOC = "L18" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW ;
+NET "LCD_RW"   LOC = "L17" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW ;
+NET "SF_D<8>"  LOC = "R15" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW ;
+NET "SF_D<9>"  LOC = "R16" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW ;
+NET "SF_D<10>" LOC = "P17" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW ;
+NET "SF_D<11>" LOC = "M15" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW ;
+NET "SF_CE0"   LOC = "D16" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW ;

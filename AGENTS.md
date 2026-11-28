@@ -22,7 +22,8 @@ Os projetos em `refs/` **não** são fonte de verdade (ver "Referências").
 | `proj-cpu/constraints/spartan3e.ucf` | Clock, reset (SW0), LEDs e LCD |
 | `proj-cpu/programs/` | `.asm` (`fibonacci`, `bubble_sort` e variantes, `reservados`, `secao43`, `demo_flags`) e `gen/` (imagens, traços, tabelas passo a passo). Ver o `README.md` dela |
 | `proj-cpu/tools/` | `cpu8.py` (montador, modelo de referência, geração de testes), `ise.sh` (ISim/XST/PAR no Docker), `gera_bits.sh`, `relatorio.py`, `empacotar.sh`, `criar_projeto_ise.tcl` |
-| `proj-cpu/ise/cpu8.xise` | Projeto do ISE (gerado por `criar_projeto_ise.tcl`); abre na GUI |
+| `proj-cpu/projeto_ise/` | **Projeto do ISE numa pasta só** (formato de projeto exportado, como `test_proj_dan_gab.zip`): é o que a dupla copia para o PC do laboratório, abre e grava. **Gerado** por `tools/exportar_ise.sh`: nunca editar à mão |
+| `proj-cpu/ise/cpu8.xise` | O mesmo projeto apontando para `../rtl`, `../tb`, `../constraints` (uso com os scripts) |
 | `proj-cpu/docs/` | `ISA.md`, `CRITERIOS_DE_PRONTO.md`, `TESTE_NA_PLACA.md`, `relatorio.pdf` |
 | `proj-cpu/build/`, `proj-cpu/entrega/` | Saídas (relatórios do ISE, `.bit`, ZIP). Ignoradas pelo git |
 | `proj-cpu/cpu.vhd`, `proj-cpu/RAM_8x256.vhd`, `proj-cpu/character_to_slv_v2.txt` | Originais do professor. **Não editar nem compilar**: as entidades têm o mesmo nome das de `rtl/` |
@@ -95,6 +96,7 @@ Tabela completa em [`proj-cpu/docs/ISA.md`](proj-cpu/docs/ISA.md). Formato: `opc
 - `CMD_*` está duplicado em `alu.vhd`, `cpu.vhd` e `tb_alu.vhd`: mudar nos três.
 - Texto do LCD: a tabela de `rtl/lcd_texto.vhd` é **gerada** por `tools/cpu8.py lcdrom` a partir da mesma função que gera as referências dos testes. Mudar o texto em `cpu8.py` (`modelo_lcd`), regenerar a tabela e rodar `cpu8.py all`.
 - Depois de mudar `cpu.vhd`, `alu.vhd` ou `lcd*.vhd`: `tools/ise.sh sim` (todos os testbenches) antes de dar como pronto.
+- Depois de mudar qualquer coisa em `rtl/`, `tb/`, `constraints/` ou o programa carregado: `tools/exportar_ise.sh`, para `projeto_ise/` não ficar desatualizada (o `empacotar.sh` já roda o exportar).
 
 ## LCD (implementado)
 
@@ -129,6 +131,8 @@ tools/ise.sh sim                     # todos os testbenches no ISim (~4 min; tb_
 tools/ise.sh sim tb_cpu_programas    # um testbench
 tools/ise.sh impl                    # XST, MAP, PAR, trce, bitgen -> build/main.bit
 tools/gera_bits.sh                   # build/bits/{demo_flags,fibonacci,bubble_sort}.bit
+tools/exportar_ise.sh                # projeto_ise/ (pasta única para abrir no ISE do laboratório)
+tools/pos_route.sh                   # simulação pós-roteamento (netlist + SDF), ~30 min
 python3 tools/relatorio.py           # docs/relatorio.html e .pdf (Chrome headless)
 tools/empacotar.sh                   # entrega/ENG4448_TF_2210442_2211700.zip
 ```

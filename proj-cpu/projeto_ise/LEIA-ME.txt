@@ -1,0 +1,30 @@
+Projeto ISE 14.7 da CPU de 8 bits (ENG4448) - Spartan-3E Starter Kit, xc3s500e-4fg320
+Gerado por proj-cpu/tools/exportar_ise.sh em 27/11/2026. Nao edite estes arquivos:
+os originais ficam em proj-cpu/rtl, tb e constraints.
+
+Programa na RAM (RAM_8x256.vhd): fibonacci
+
+GRAVAR NA PLACA
+  1. Copie esta pasta inteira (ex.: C:\Temp\projeto_ise) e abra cpu8.xise no ISE.
+  2. Aba Implementation, selecione "main", duplo clique em Generate Programming File.
+  3. Configure Target Device (iMPACT) > Boundary Scan > Initialize Chain >
+     main.bit no xc3s500e (Bypass nos outros) > Program.
+  4. SW0 em 1 (reset) por ~1 s, depois SW0 em 0. Roteiro: proj-cpu/docs/TESTE_NA_PLACA.md
+
+SIMULAR
+  Aba Simulation, selecione um testbench e duplo clique em Simulate Behavioral Model
+  (o projeto ja usa "Simulation Run Time = all"; a simulacao para sozinha).
+  Procure no console a mensagem "TODOS OS TESTES PASSARAM" ou "PASSOU COM SUCESSO".
+    tb_alu            ALU                                       instantaneo
+    tb_ram            RAM com o programa gravado                instantaneo
+    tb_lcd_texto      texto do LCD (770 casos)                  instantaneo
+    tb_cpu_programas  34 programas, 12.247 instrucoes           segundos
+    tb_lcd            controlador do LCD e tempos do UG230      ~1 min
+    tb_main           topo inteiro: LEDs e LCD a cada instrucao  ~3 min
+  Os testbenches leem a pasta dados/ (precisa estar ao lado do cpu8.xise).
+
+TROCAR O PROGRAMA (programa surpresa)
+  Substitua o bloco "signal ram : RAM_t := (...)" em RAM_8x256.vhd pelo do professor
+  (ou o arquivo inteiro gerado pelo nasm.exe -r) e rode Generate Programming File.
+  tb_ram e tb_main conferem o programa listado em dados/carregado.txt; para outro
+  programa use proj-cpu/tools/cpu8.py carregar NOME e gere esta pasta de novo.

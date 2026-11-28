@@ -8,7 +8,8 @@ CPU de 8 bits em VHDL para a Spartan-3E Starter Kit (`xc3s500e-4fg320`), trabalh
 
 | Onde | O quê |
 | --- | --- |
-| [`proj-cpu/`](proj-cpu/) | O projeto (VHDL, testbenches, programas, ferramentas, projeto ISE) |
+| [`proj-cpu/projeto_ise/`](proj-cpu/projeto_ise/) | **Projeto do ISE pronto para abrir**: copiar a pasta, abrir `cpu8.xise`, Generate Programming File, gravar. Ver o `LEIA-ME.txt` dela |
+| [`proj-cpu/`](proj-cpu/) | O projeto organizado (VHDL, testbenches, programas, ferramentas) |
 | [`proj-cpu/docs/TESTE_NA_PLACA.md`](proj-cpu/docs/TESTE_NA_PLACA.md) | O que falta testar na placa |
 | [`proj-cpu/docs/CRITERIOS_DE_PRONTO.md`](proj-cpu/docs/CRITERIOS_DE_PRONTO.md) | Exigências do enunciado e como cada uma foi verificada |
 | [`proj-cpu/docs/relatorio.pdf`](proj-cpu/docs/relatorio.pdf) | Relatório |
@@ -22,4 +23,6 @@ tools/ise.sh sim     # todos os testbenches
 tools/ise.sh impl    # gera build/main.bit
 ```
 
-Na GUI do ISE: abrir `proj-cpu/ise/cpu8.xise`.
+Na GUI do ISE (Windows ou Linux): copiar `proj-cpu/projeto_ise/` e abrir `cpu8.xise`.
+
+A pasta `projeto_ise/` é gerada a partir dos fontes (`tools/exportar_ise.sh`): edite os originais em `proj-cpu/rtl`, `tb` e `constraints`.

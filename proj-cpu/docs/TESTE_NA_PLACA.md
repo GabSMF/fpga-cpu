@@ -8,7 +8,7 @@ Placa: Spartan-3E Starter Kit, `xc3s500e-4fg320`. Comandos: SW0 (chave da direit
 
 Escolha **uma** das formas:
 
-- **ISE (GUI)**: abrir `proj-cpu/ise/cpu8.xise` → selecionar `main` → Generate Programming File → Configure Target Device (iMPACT) → Initialize Chain → `main.bit` no `xc3s500e` (Bypass nos outros) → Program.
+- **ISE (GUI), o jeito mais simples**: copiar a pasta `proj-cpu/projeto_ise/` (ex.: para `C:\Temp`), abrir `cpu8.xise` → selecionar `main` → Generate Programming File → Configure Target Device (iMPACT) → Initialize Chain → `main.bit` no `xc3s500e` (Bypass nos outros) → Program.
 - **Linha de comando**: `python3 tools/cpu8.py carregar NOME` e depois `tools/ise.sh impl`. O bitstream sai em `proj-cpu/build/main.bit`; gravar pelo iMPACT.
 
 Bitstreams prontos (gerados em 27/11/2026, não versionados): `proj-cpu/build/bits/{demo_flags,fibonacci,bubble_sort}.bit`. Para regenerar: `tools/gera_bits.sh`.

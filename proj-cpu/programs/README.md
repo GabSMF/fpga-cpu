@@ -35,7 +35,7 @@ O `nasm.exe` roda no Windows ou, no Linux, pelo Wine. `tools/cpu8.py` chama o Wi
 1. Escreva `programs/NOME.asm` (sintaxe do `nasm.exe`: `rotulo:`, `@rotulo`, `.equ`, `.org`, `.byte`; comentário com `;`).
 2. `python3 tools/cpu8.py all` (monta todos e regenera os arquivos de teste).
 3. `python3 tools/cpu8.py carregar NOME` (copia `gen/NOME.vhd` para `rtl/RAM_8x256.vhd` e registra o nome para `tb_ram`/`tb_main`).
-4. `tools/ise.sh sim` (todos os testbenches) e `tools/ise.sh impl` (gera `build/main.bit`), ou no ISE: abrir `ise/cpu8.xise` e Generate Programming File.
+4. `tools/ise.sh sim` (todos os testbenches) e `tools/ise.sh impl` (gera `build/main.bit`), ou no ISE: `tools/exportar_ise.sh`, abrir `projeto_ise/cpu8.xise` e Generate Programming File.
 
 ### Programa surpresa do professor
 
