@@ -1,768 +1,770 @@
-0 11 1 ADD Ra Ra       
-0 11 0 ADD Ra Ra       
-1 48 1 ADD Ra Rb       
-1 48 0 ADD Ra Rb       
-2 85 1 ADD Ra Rc       
-2 85 0 ADD Ra Rc       
-3 122 1 ADD Ra Rd       
-3 122 0 ADD Ra Rd       
-4 159 1 ADD Rb Ra       
-4 159 0 ADD Rb Ra       
-5 196 1 ADD Rb Rb       
-5 196 0 ADD Rb Rb       
-6 233 1 ADD Rb Rc       
-6 233 0 ADD Rb Rc       
-7 14 1 ADD Rb Rd       
-7 14 0 ADD Rb Rd       
-8 51 1 ADD Rc Ra       
-8 51 0 ADD Rc Ra       
-9 88 1 ADD Rc Rb       
-9 88 0 ADD Rc Rb       
-10 125 1 ADD Rc Rc       
-10 125 0 ADD Rc Rc       
-11 162 1 ADD Rc Rd       
-11 162 0 ADD Rc Rd       
-12 199 1 ADD Rd Ra       
-12 199 0 ADD Rd Ra       
-13 236 1 ADD Rd Rb       
-13 236 0 ADD Rd Rb       
-14 17 1 ADD Rd Rc       
-14 17 0 ADD Rd Rc       
-15 54 1 ADD Rd Rd       
-15 54 0 ADD Rd Rd       
-16 91 1 SUB Ra Ra       
-16 91 0 SUB Ra Ra       
-17 128 1 SUB Ra Rb       
-17 128 0 SUB Ra Rb       
-18 165 1 SUB Ra Rc       
-18 165 0 SUB Ra Rc       
-19 202 1 SUB Ra Rd       
-19 202 0 SUB Ra Rd       
-20 239 1 SUB Rb Ra       
-20 239 0 SUB Rb Ra       
-21 20 1 SUB Rb Rb       
-21 20 0 SUB Rb Rb       
-22 57 1 SUB Rb Rc       
-22 57 0 SUB Rb Rc       
-23 94 1 SUB Rb Rd       
-23 94 0 SUB Rb Rd       
-24 131 1 SUB Rc Ra       
-24 131 0 SUB Rc Ra       
-25 168 1 SUB Rc Rb       
-25 168 0 SUB Rc Rb       
-26 205 1 SUB Rc Rc       
-26 205 0 SUB Rc Rc       
-27 242 1 SUB Rc Rd       
-27 242 0 SUB Rc Rd       
-28 23 1 SUB Rd Ra       
-28 23 0 SUB Rd Ra       
-29 60 1 SUB Rd Rb       
-29 60 0 SUB Rd Rb       
-30 97 1 SUB Rd Rc       
-30 97 0 SUB Rd Rc       
-31 134 1 SUB Rd Rd       
-31 134 0 SUB Rd Rd       
-32 171 1 INC Ra          
-32 171 0 INC Ra          
-33 208 1 DEC Ra          
-33 208 0 DEC Ra          
-34 245 1 NOP (0x22)      
-34 245 0 NOP (0x22)      
-35 26 1 NOP (0x23)      
-35 26 0 NOP (0x23)      
-36 63 1 INC Rb          
-36 63 0 INC Rb          
-37 100 1 DEC Rb          
-37 100 0 DEC Rb          
-38 137 1 NOP (0x26)      
-38 137 0 NOP (0x26)      
-39 174 1 NOP (0x27)      
-39 174 0 NOP (0x27)      
-40 211 1 INC Rc          
-40 211 0 INC Rc          
-41 248 1 DEC Rc          
-41 248 0 DEC Rc          
-42 29 1 NOP (0x2A)      
-42 29 0 NOP (0x2A)      
-43 66 1 NOP (0x2B)      
-43 66 0 NOP (0x2B)      
-44 103 1 INC Rd          
-44 103 0 INC Rd          
-45 140 1 DEC Rd          
-45 140 0 DEC Rd          
-46 177 1 NOP (0x2E)      
-46 177 0 NOP (0x2E)      
-47 214 1 NOP (0x2F)      
-47 214 0 NOP (0x2F)      
-48 251 1 AND Ra Ra       
-48 251 0 AND Ra Ra       
-49 32 1 AND Ra Rb       
-49 32 0 AND Ra Rb       
-50 69 1 AND Ra Rc       
-50 69 0 AND Ra Rc       
-51 106 1 AND Ra Rd       
-51 106 0 AND Ra Rd       
-52 143 1 AND Rb Ra       
-52 143 0 AND Rb Ra       
-53 180 1 AND Rb Rb       
-53 180 0 AND Rb Rb       
-54 217 1 AND Rb Rc       
-54 217 0 AND Rb Rc       
-55 254 1 AND Rb Rd       
-55 254 0 AND Rb Rd       
-56 35 1 AND Rc Ra       
-56 35 0 AND Rc Ra       
-57 72 1 AND Rc Rb       
-57 72 0 AND Rc Rb       
-58 109 1 AND Rc Rc       
-58 109 0 AND Rc Rc       
-59 146 1 AND Rc Rd       
-59 146 0 AND Rc Rd       
-60 183 1 AND Rd Ra       
-60 183 0 AND Rd Ra       
-61 220 1 AND Rd Rb       
-61 220 0 AND Rd Rb       
-62 1 1 AND Rd Rc       
-62 1 0 AND Rd Rc       
-63 38 1 AND Rd Rd       
-63 38 0 AND Rd Rd       
-64 75 1 OR Ra Ra        
-64 75 0 OR Ra Ra        
-65 112 1 OR Ra Rb        
-65 112 0 OR Ra Rb        
-66 149 1 OR Ra Rc        
-66 149 0 OR Ra Rc        
-67 186 1 OR Ra Rd        
-67 186 0 OR Ra Rd        
-68 223 1 OR Rb Ra        
-68 223 0 OR Rb Ra        
-69 4 1 OR Rb Rb        
-69 4 0 OR Rb Rb        
-70 41 1 OR Rb Rc        
-70 41 0 OR Rb Rc        
-71 78 1 OR Rb Rd        
-71 78 0 OR Rb Rd        
-72 115 1 OR Rc Ra        
-72 115 0 OR Rc Ra        
-73 152 1 OR Rc Rb        
-73 152 0 OR Rc Rb        
-74 189 1 OR Rc Rc        
-74 189 0 OR Rc Rc        
-75 226 1 OR Rc Rd        
-75 226 0 OR Rc Rd        
-76 7 1 OR Rd Ra        
-76 7 0 OR Rd Ra        
-77 44 1 OR Rd Rb        
-77 44 0 OR Rd Rb        
-78 81 1 OR Rd Rc        
-78 81 0 OR Rd Rc        
-79 118 1 OR Rd Rd        
-79 118 0 OR Rd Rd        
-80 155 1 NOT Ra          
-80 155 0 NOT Ra          
-81 192 1 NOP (0x51)      
-81 192 0 NOP (0x51)      
-82 229 1 NOP (0x52)      
-82 229 0 NOP (0x52)      
-83 10 1 NOP (0x53)      
-83 10 0 NOP (0x53)      
-84 47 1 NOT Rb          
-84 47 0 NOT Rb          
-85 84 1 NOP (0x55)      
-85 84 0 NOP (0x55)      
-86 121 1 NOP (0x56)      
-86 121 0 NOP (0x56)      
-87 158 1 NOP (0x57)      
-87 158 0 NOP (0x57)      
-88 195 1 NOT Rc          
-88 195 0 NOT Rc          
-89 232 1 NOP (0x59)      
-89 232 0 NOP (0x59)      
-90 13 1 NOP (0x5A)      
-90 13 0 NOP (0x5A)      
-91 50 1 NOP (0x5B)      
-91 50 0 NOP (0x5B)      
-92 87 1 NOT Rd          
-92 87 0 NOT Rd          
-93 124 1 NOP (0x5D)      
-93 124 0 NOP (0x5D)      
-94 161 1 NOP (0x5E)      
-94 161 0 NOP (0x5E)      
-95 198 1 NOP (0x5F)      
-95 198 0 NOP (0x5F)      
-96 235 1 XOR Ra Ra       
-96 235 0 XOR Ra Ra       
-97 16 1 XOR Ra Rb       
-97 16 0 XOR Ra Rb       
-98 53 1 XOR Ra Rc       
-98 53 0 XOR Ra Rc       
-99 90 1 XOR Ra Rd       
-99 90 0 XOR Ra Rd       
-100 127 1 XOR Rb Ra       
-100 127 0 XOR Rb Ra       
-101 164 1 XOR Rb Rb       
-101 164 0 XOR Rb Rb       
-102 201 1 XOR Rb Rc       
-102 201 0 XOR Rb Rc       
-103 238 1 XOR Rb Rd       
-103 238 0 XOR Rb Rd       
-104 19 1 XOR Rc Ra       
-104 19 0 XOR Rc Ra       
-105 56 1 XOR Rc Rb       
-105 56 0 XOR Rc Rb       
-106 93 1 XOR Rc Rc       
-106 93 0 XOR Rc Rc       
-107 130 1 XOR Rc Rd       
-107 130 0 XOR Rc Rd       
-108 167 1 XOR Rd Ra       
-108 167 0 XOR Rd Ra       
-109 204 1 XOR Rd Rb       
-109 204 0 XOR Rd Rb       
-110 241 1 XOR Rd Rc       
-110 241 0 XOR Rd Rc       
-111 22 1 XOR Rd Rd       
-111 22 0 XOR Rd Rd       
-112 59 1 ROL Ra          
-112 59 0 ROL Ra          
-113 96 1 ROR Ra          
-113 96 0 ROR Ra          
-114 133 1 LSL Ra          
-114 133 0 LSL Ra          
-115 170 1 LSR Ra          
-115 170 0 LSR Ra          
-116 207 1 ROL Rb          
-116 207 0 ROL Rb          
-117 244 1 ROR Rb          
-117 244 0 ROR Rb          
-118 25 1 LSL Rb          
-118 25 0 LSL Rb          
-119 62 1 LSR Rb          
-119 62 0 LSR Rb          
-120 99 1 ROL Rc          
-120 99 0 ROL Rc          
-121 136 1 ROR Rc          
-121 136 0 ROR Rc          
-122 173 1 LSL Rc          
-122 173 0 LSL Rc          
-123 210 1 LSR Rc          
-123 210 0 LSR Rc          
-124 247 1 ROL Rd          
-124 247 0 ROL Rd          
-125 28 1 ROR Rd          
-125 28 0 ROR Rd          
-126 65 1 LSL Rd          
-126 65 0 LSL Rd          
-127 102 1 LSR Rd          
-127 102 0 LSR Rd          
-128 139 1 PUSH Ra         
-128 139 0 PUSH Ra         
-129 176 1 POP Ra          
-129 176 0 POP Ra          
-130 213 1 ST Ra, 0xD5     
-130 213 0 ST Ra, 0x--     
-131 250 1 LDI Ra, 0xFA    
-131 250 0 LDI Ra, 0x--    
-132 31 1 PUSH Rb         
-132 31 0 PUSH Rb         
-133 68 1 POP Rb          
-133 68 0 POP Rb          
-134 105 1 ST Rb, 0x69     
-134 105 0 ST Rb, 0x--     
-135 142 1 LDI Rb, 0x8E    
-135 142 0 LDI Rb, 0x--    
-136 179 1 PUSH Rc         
-136 179 0 PUSH Rc         
-137 216 1 POP Rc          
-137 216 0 POP Rc          
-138 253 1 ST Rc, 0xFD     
-138 253 0 ST Rc, 0x--     
-139 34 1 LDI Rc, 0x22    
-139 34 0 LDI Rc, 0x--    
-140 71 1 PUSH Rd         
-140 71 0 PUSH Rd         
-141 108 1 POP Rd          
-141 108 0 POP Rd          
-142 145 1 ST Rd, 0x91     
-142 145 0 ST Rd, 0x--     
-143 182 1 LDI Rd, 0xB6    
-143 182 0 LDI Rd, 0x--    
-144 219 1 LDR Ra [Ra]     
-144 219 0 LDR Ra [Ra]     
-145 0 1 LDR Ra [Rb]     
-145 0 0 LDR Ra [Rb]     
-146 37 1 LDR Ra [Rc]     
-146 37 0 LDR Ra [Rc]     
-147 74 1 LDR Ra [Rd]     
-147 74 0 LDR Ra [Rd]     
-148 111 1 LDR Rb [Ra]     
-148 111 0 LDR Rb [Ra]     
-149 148 1 LDR Rb [Rb]     
-149 148 0 LDR Rb [Rb]     
-150 185 1 LDR Rb [Rc]     
-150 185 0 LDR Rb [Rc]     
-151 222 1 LDR Rb [Rd]     
-151 222 0 LDR Rb [Rd]     
-152 3 1 LDR Rc [Ra]     
-152 3 0 LDR Rc [Ra]     
-153 40 1 LDR Rc [Rb]     
-153 40 0 LDR Rc [Rb]     
-154 77 1 LDR Rc [Rc]     
-154 77 0 LDR Rc [Rc]     
-155 114 1 LDR Rc [Rd]     
-155 114 0 LDR Rc [Rd]     
-156 151 1 LDR Rd [Ra]     
-156 151 0 LDR Rd [Ra]     
-157 188 1 LDR Rd [Rb]     
-157 188 0 LDR Rd [Rb]     
-158 225 1 LDR Rd [Rc]     
-158 225 0 LDR Rd [Rc]     
-159 6 1 LDR Rd [Rd]     
-159 6 0 LDR Rd [Rd]     
-160 43 1 STR Ra [Ra]     
-160 43 0 STR Ra [Ra]     
-161 80 1 STR Ra [Rb]     
-161 80 0 STR Ra [Rb]     
-162 117 1 STR Ra [Rc]     
-162 117 0 STR Ra [Rc]     
-163 154 1 STR Ra [Rd]     
-163 154 0 STR Ra [Rd]     
-164 191 1 STR Rb [Ra]     
-164 191 0 STR Rb [Ra]     
-165 228 1 STR Rb [Rb]     
-165 228 0 STR Rb [Rb]     
-166 9 1 STR Rb [Rc]     
-166 9 0 STR Rb [Rc]     
-167 46 1 STR Rb [Rd]     
-167 46 0 STR Rb [Rd]     
-168 83 1 STR Rc [Ra]     
-168 83 0 STR Rc [Ra]     
-169 120 1 STR Rc [Rb]     
-169 120 0 STR Rc [Rb]     
-170 157 1 STR Rc [Rc]     
-170 157 0 STR Rc [Rc]     
-171 194 1 STR Rc [Rd]     
-171 194 0 STR Rc [Rd]     
-172 231 1 STR Rd [Ra]     
-172 231 0 STR Rd [Ra]     
-173 12 1 STR Rd [Rb]     
-173 12 0 STR Rd [Rb]     
-174 49 1 STR Rd [Rc]     
-174 49 0 STR Rd [Rc]     
-175 86 1 STR Rd [Rd]     
-175 86 0 STR Rd [Rd]     
-176 123 1 MOV Ra Ra       
-176 123 0 MOV Ra Ra       
-177 160 1 MOV Ra Rb       
-177 160 0 MOV Ra Rb       
-178 197 1 MOV Ra Rc       
-178 197 0 MOV Ra Rc       
-179 234 1 MOV Ra Rd       
-179 234 0 MOV Ra Rd       
-180 15 1 MOV Rb Ra       
-180 15 0 MOV Rb Ra       
-181 52 1 MOV Rb Rb       
-181 52 0 MOV Rb Rb       
-182 89 1 MOV Rb Rc       
-182 89 0 MOV Rb Rc       
-183 126 1 MOV Rb Rd       
-183 126 0 MOV Rb Rd       
-184 163 1 MOV Rc Ra       
-184 163 0 MOV Rc Ra       
-185 200 1 MOV Rc Rb       
-185 200 0 MOV Rc Rb       
-186 237 1 MOV Rc Rc       
-186 237 0 MOV Rc Rc       
-187 18 1 MOV Rc Rd       
-187 18 0 MOV Rc Rd       
-188 55 1 MOV Rd Ra       
-188 55 0 MOV Rd Ra       
-189 92 1 MOV Rd Rb       
-189 92 0 MOV Rd Rb       
-190 129 1 MOV Rd Rc       
-190 129 0 MOV Rd Rc       
-191 166 1 MOV Rd Rd       
-191 166 0 MOV Rd Rd       
-192 203 1 JMP 0xCB        
-192 203 0 JMP 0x--        
-193 240 1 JMPR Ra         
-193 240 0 JMPR Ra         
-194 21 1 BZ Ra           
-194 21 0 BZ Ra           
-195 58 1 BNZ Ra          
-195 58 0 BNZ Ra          
-196 95 1 NOP (0xC4)      
-196 95 0 NOP (0xC4)      
-197 132 1 JMPR Rb         
-197 132 0 JMPR Rb         
-198 169 1 BZ Rb           
-198 169 0 BZ Rb           
-199 206 1 BNZ Rb          
-199 206 0 BNZ Rb          
-200 243 1 NOP (0xC8)      
-200 243 0 NOP (0xC8)      
-201 24 1 JMPR Rc         
-201 24 0 JMPR Rc         
-202 61 1 BZ Rc           
-202 61 0 BZ Rc           
-203 98 1 BNZ Rc          
-203 98 0 BNZ Rc          
-204 135 1 NOP (0xCC)      
-204 135 0 NOP (0xCC)      
-205 172 1 JMPR Rd         
-205 172 0 JMPR Rd         
-206 209 1 BZ Rd           
-206 209 0 BZ Rd           
-207 246 1 BNZ Rd          
-207 246 0 BNZ Rd          
-208 27 1 BCS Ra          
-208 27 0 BCS Ra          
-209 64 1 BCC Ra          
-209 64 0 BCC Ra          
-210 101 1 BEQ Ra          
-210 101 0 BEQ Ra          
-211 138 1 BNEQ Ra         
-211 138 0 BNEQ Ra         
-212 175 1 BCS Rb          
-212 175 0 BCS Rb          
-213 212 1 BCC Rb          
-213 212 0 BCC Rb          
-214 249 1 BEQ Rb          
-214 249 0 BEQ Rb          
-215 30 1 BNEQ Rb         
-215 30 0 BNEQ Rb         
-216 67 1 BCS Rc          
-216 67 0 BCS Rc          
-217 104 1 BCC Rc          
-217 104 0 BCC Rc          
-218 141 1 BEQ Rc          
-218 141 0 BEQ Rc          
-219 178 1 BNEQ Rc         
-219 178 0 BNEQ Rc         
-220 215 1 BCS Rd          
-220 215 0 BCS Rd          
-221 252 1 BCC Rd          
-221 252 0 BCC Rd          
-222 33 1 BEQ Rd          
-222 33 0 BEQ Rd          
-223 70 1 BNEQ Rd         
-223 70 0 BNEQ Rd         
-224 107 1 BGT Ra          
-224 107 0 BGT Ra          
-225 144 1 BLT Ra          
-225 144 0 BLT Ra          
-226 181 1 BNEG Ra         
-226 181 0 BNEG Ra         
-227 218 1 NOP (0xE3)      
-227 218 0 NOP (0xE3)      
-228 255 1 BGT Rb          
-228 255 0 BGT Rb          
-229 36 1 BLT Rb          
-229 36 0 BLT Rb          
-230 73 1 BNEG Rb         
-230 73 0 BNEG Rb         
-231 110 1 NOP (0xE7)      
-231 110 0 NOP (0xE7)      
-232 147 1 BGT Rc          
-232 147 0 BGT Rc          
-233 184 1 BLT Rc          
-233 184 0 BLT Rc          
-234 221 1 BNEG Rc         
-234 221 0 BNEG Rc         
-235 2 1 NOP (0xEB)      
-235 2 0 NOP (0xEB)      
-236 39 1 BGT Rd          
-236 39 0 BGT Rd          
-237 76 1 BLT Rd          
-237 76 0 BLT Rd          
-238 113 1 BNEG Rd         
-238 113 0 BNEG Rd         
-239 150 1 NOP (0xEF)      
-239 150 0 NOP (0xEF)      
-240 187 1 NOP             
-240 187 0 NOP             
-241 224 1 NOP (0xF1)      
-241 224 0 NOP (0xF1)      
-242 5 1 NOP (0xF2)      
-242 5 0 NOP (0xF2)      
-243 42 1 NOP (0xF3)      
-243 42 0 NOP (0xF3)      
-244 79 1 NOP (0xF4)      
-244 79 0 NOP (0xF4)      
-245 116 1 NOP (0xF5)      
-245 116 0 NOP (0xF5)      
-246 153 1 NOP (0xF6)      
-246 153 0 NOP (0xF6)      
-247 190 1 NOP (0xF7)      
-247 190 0 NOP (0xF7)      
-248 227 1 NOP (0xF8)      
-248 227 0 NOP (0xF8)      
-249 8 1 NOP (0xF9)      
-249 8 0 NOP (0xF9)      
-250 45 1 NOP (0xFA)      
-250 45 0 NOP (0xFA)      
-251 82 1 NOP (0xFB)      
-251 82 0 NOP (0xFB)      
-252 119 1 NOP (0xFC)      
-252 119 0 NOP (0xFC)      
-253 156 1 NOP (0xFD)      
-253 156 0 NOP (0xFD)      
-254 193 1 NOP (0xFE)      
-254 193 0 NOP (0xFE)      
-255 230 1 HALT            
-255 230 0 HALT            
-L2 0 MEM[255] = 000  
-L2 1 MEM[255] = 001  
-L2 2 MEM[255] = 002  
-L2 3 MEM[255] = 003  
-L2 4 MEM[255] = 004  
-L2 5 MEM[255] = 005  
-L2 6 MEM[255] = 006  
-L2 7 MEM[255] = 007  
-L2 8 MEM[255] = 008  
-L2 9 MEM[255] = 009  
-L2 10 MEM[255] = 010  
-L2 11 MEM[255] = 011  
-L2 12 MEM[255] = 012  
-L2 13 MEM[255] = 013  
-L2 14 MEM[255] = 014  
-L2 15 MEM[255] = 015  
-L2 16 MEM[255] = 016  
-L2 17 MEM[255] = 017  
-L2 18 MEM[255] = 018  
-L2 19 MEM[255] = 019  
-L2 20 MEM[255] = 020  
-L2 21 MEM[255] = 021  
-L2 22 MEM[255] = 022  
-L2 23 MEM[255] = 023  
-L2 24 MEM[255] = 024  
-L2 25 MEM[255] = 025  
-L2 26 MEM[255] = 026  
-L2 27 MEM[255] = 027  
-L2 28 MEM[255] = 028  
-L2 29 MEM[255] = 029  
-L2 30 MEM[255] = 030  
-L2 31 MEM[255] = 031  
-L2 32 MEM[255] = 032  
-L2 33 MEM[255] = 033  
-L2 34 MEM[255] = 034  
-L2 35 MEM[255] = 035  
-L2 36 MEM[255] = 036  
-L2 37 MEM[255] = 037  
-L2 38 MEM[255] = 038  
-L2 39 MEM[255] = 039  
-L2 40 MEM[255] = 040  
-L2 41 MEM[255] = 041  
-L2 42 MEM[255] = 042  
-L2 43 MEM[255] = 043  
-L2 44 MEM[255] = 044  
-L2 45 MEM[255] = 045  
-L2 46 MEM[255] = 046  
-L2 47 MEM[255] = 047  
-L2 48 MEM[255] = 048  
-L2 49 MEM[255] = 049  
-L2 50 MEM[255] = 050  
-L2 51 MEM[255] = 051  
-L2 52 MEM[255] = 052  
-L2 53 MEM[255] = 053  
-L2 54 MEM[255] = 054  
-L2 55 MEM[255] = 055  
-L2 56 MEM[255] = 056  
-L2 57 MEM[255] = 057  
-L2 58 MEM[255] = 058  
-L2 59 MEM[255] = 059  
-L2 60 MEM[255] = 060  
-L2 61 MEM[255] = 061  
-L2 62 MEM[255] = 062  
-L2 63 MEM[255] = 063  
-L2 64 MEM[255] = 064  
-L2 65 MEM[255] = 065  
-L2 66 MEM[255] = 066  
-L2 67 MEM[255] = 067  
-L2 68 MEM[255] = 068  
-L2 69 MEM[255] = 069  
-L2 70 MEM[255] = 070  
-L2 71 MEM[255] = 071  
-L2 72 MEM[255] = 072  
-L2 73 MEM[255] = 073  
-L2 74 MEM[255] = 074  
-L2 75 MEM[255] = 075  
-L2 76 MEM[255] = 076  
-L2 77 MEM[255] = 077  
-L2 78 MEM[255] = 078  
-L2 79 MEM[255] = 079  
-L2 80 MEM[255] = 080  
-L2 81 MEM[255] = 081  
-L2 82 MEM[255] = 082  
-L2 83 MEM[255] = 083  
-L2 84 MEM[255] = 084  
-L2 85 MEM[255] = 085  
-L2 86 MEM[255] = 086  
-L2 87 MEM[255] = 087  
-L2 88 MEM[255] = 088  
-L2 89 MEM[255] = 089  
-L2 90 MEM[255] = 090  
-L2 91 MEM[255] = 091  
-L2 92 MEM[255] = 092  
-L2 93 MEM[255] = 093  
-L2 94 MEM[255] = 094  
-L2 95 MEM[255] = 095  
-L2 96 MEM[255] = 096  
-L2 97 MEM[255] = 097  
-L2 98 MEM[255] = 098  
-L2 99 MEM[255] = 099  
-L2 100 MEM[255] = 100  
-L2 101 MEM[255] = 101  
-L2 102 MEM[255] = 102  
-L2 103 MEM[255] = 103  
-L2 104 MEM[255] = 104  
-L2 105 MEM[255] = 105  
-L2 106 MEM[255] = 106  
-L2 107 MEM[255] = 107  
-L2 108 MEM[255] = 108  
-L2 109 MEM[255] = 109  
-L2 110 MEM[255] = 110  
-L2 111 MEM[255] = 111  
-L2 112 MEM[255] = 112  
-L2 113 MEM[255] = 113  
-L2 114 MEM[255] = 114  
-L2 115 MEM[255] = 115  
-L2 116 MEM[255] = 116  
-L2 117 MEM[255] = 117  
-L2 118 MEM[255] = 118  
-L2 119 MEM[255] = 119  
-L2 120 MEM[255] = 120  
-L2 121 MEM[255] = 121  
-L2 122 MEM[255] = 122  
-L2 123 MEM[255] = 123  
-L2 124 MEM[255] = 124  
-L2 125 MEM[255] = 125  
-L2 126 MEM[255] = 126  
-L2 127 MEM[255] = 127  
-L2 128 MEM[255] = 128  
-L2 129 MEM[255] = 129  
-L2 130 MEM[255] = 130  
-L2 131 MEM[255] = 131  
-L2 132 MEM[255] = 132  
-L2 133 MEM[255] = 133  
-L2 134 MEM[255] = 134  
-L2 135 MEM[255] = 135  
-L2 136 MEM[255] = 136  
-L2 137 MEM[255] = 137  
-L2 138 MEM[255] = 138  
-L2 139 MEM[255] = 139  
-L2 140 MEM[255] = 140  
-L2 141 MEM[255] = 141  
-L2 142 MEM[255] = 142  
-L2 143 MEM[255] = 143  
-L2 144 MEM[255] = 144  
-L2 145 MEM[255] = 145  
-L2 146 MEM[255] = 146  
-L2 147 MEM[255] = 147  
-L2 148 MEM[255] = 148  
-L2 149 MEM[255] = 149  
-L2 150 MEM[255] = 150  
-L2 151 MEM[255] = 151  
-L2 152 MEM[255] = 152  
-L2 153 MEM[255] = 153  
-L2 154 MEM[255] = 154  
-L2 155 MEM[255] = 155  
-L2 156 MEM[255] = 156  
-L2 157 MEM[255] = 157  
-L2 158 MEM[255] = 158  
-L2 159 MEM[255] = 159  
-L2 160 MEM[255] = 160  
-L2 161 MEM[255] = 161  
-L2 162 MEM[255] = 162  
-L2 163 MEM[255] = 163  
-L2 164 MEM[255] = 164  
-L2 165 MEM[255] = 165  
-L2 166 MEM[255] = 166  
-L2 167 MEM[255] = 167  
-L2 168 MEM[255] = 168  
-L2 169 MEM[255] = 169  
-L2 170 MEM[255] = 170  
-L2 171 MEM[255] = 171  
-L2 172 MEM[255] = 172  
-L2 173 MEM[255] = 173  
-L2 174 MEM[255] = 174  
-L2 175 MEM[255] = 175  
-L2 176 MEM[255] = 176  
-L2 177 MEM[255] = 177  
-L2 178 MEM[255] = 178  
-L2 179 MEM[255] = 179  
-L2 180 MEM[255] = 180  
-L2 181 MEM[255] = 181  
-L2 182 MEM[255] = 182  
-L2 183 MEM[255] = 183  
-L2 184 MEM[255] = 184  
-L2 185 MEM[255] = 185  
-L2 186 MEM[255] = 186  
-L2 187 MEM[255] = 187  
-L2 188 MEM[255] = 188  
-L2 189 MEM[255] = 189  
-L2 190 MEM[255] = 190  
-L2 191 MEM[255] = 191  
-L2 192 MEM[255] = 192  
-L2 193 MEM[255] = 193  
-L2 194 MEM[255] = 194  
-L2 195 MEM[255] = 195  
-L2 196 MEM[255] = 196  
-L2 197 MEM[255] = 197  
-L2 198 MEM[255] = 198  
-L2 199 MEM[255] = 199  
-L2 200 MEM[255] = 200  
-L2 201 MEM[255] = 201  
-L2 202 MEM[255] = 202  
-L2 203 MEM[255] = 203  
-L2 204 MEM[255] = 204  
-L2 205 MEM[255] = 205  
-L2 206 MEM[255] = 206  
-L2 207 MEM[255] = 207  
-L2 208 MEM[255] = 208  
-L2 209 MEM[255] = 209  
-L2 210 MEM[255] = 210  
-L2 211 MEM[255] = 211  
-L2 212 MEM[255] = 212  
-L2 213 MEM[255] = 213  
-L2 214 MEM[255] = 214  
-L2 215 MEM[255] = 215  
-L2 216 MEM[255] = 216  
-L2 217 MEM[255] = 217  
-L2 218 MEM[255] = 218  
-L2 219 MEM[255] = 219  
-L2 220 MEM[255] = 220  
-L2 221 MEM[255] = 221  
-L2 222 MEM[255] = 222  
-L2 223 MEM[255] = 223  
-L2 224 MEM[255] = 224  
-L2 225 MEM[255] = 225  
-L2 226 MEM[255] = 226  
-L2 227 MEM[255] = 227  
-L2 228 MEM[255] = 228  
-L2 229 MEM[255] = 229  
-L2 230 MEM[255] = 230  
-L2 231 MEM[255] = 231  
-L2 232 MEM[255] = 232  
-L2 233 MEM[255] = 233  
-L2 234 MEM[255] = 234  
-L2 235 MEM[255] = 235  
-L2 236 MEM[255] = 236  
-L2 237 MEM[255] = 237  
-L2 238 MEM[255] = 238  
-L2 239 MEM[255] = 239  
-L2 240 MEM[255] = 240  
-L2 241 MEM[255] = 241  
-L2 242 MEM[255] = 242  
-L2 243 MEM[255] = 243  
-L2 244 MEM[255] = 244  
-L2 245 MEM[255] = 245  
-L2 246 MEM[255] = 246  
-L2 247 MEM[255] = 247  
-L2 248 MEM[255] = 248  
-L2 249 MEM[255] = 249  
-L2 250 MEM[255] = 250  
-L2 251 MEM[255] = 251  
-L2 252 MEM[255] = 252  
-L2 253 MEM[255] = 253  
-L2 254 MEM[255] = 254  
-L2 255 MEM[255] = 255  
+1 0 11 1 ADD Ra Ra       
+1 0 11 0 ADD Ra Ra       
+1 1 48 1 ADD Ra Rb       
+1 1 48 0 ADD Ra Rb       
+1 2 85 1 ADD Ra Rc       
+1 2 85 0 ADD Ra Rc       
+1 3 122 1 ADD Ra Rd       
+1 3 122 0 ADD Ra Rd       
+1 4 159 1 ADD Rb Ra       
+1 4 159 0 ADD Rb Ra       
+1 5 196 1 ADD Rb Rb       
+1 5 196 0 ADD Rb Rb       
+1 6 233 1 ADD Rb Rc       
+1 6 233 0 ADD Rb Rc       
+1 7 14 1 ADD Rb Rd       
+1 7 14 0 ADD Rb Rd       
+1 8 51 1 ADD Rc Ra       
+1 8 51 0 ADD Rc Ra       
+1 9 88 1 ADD Rc Rb       
+1 9 88 0 ADD Rc Rb       
+1 10 125 1 ADD Rc Rc       
+1 10 125 0 ADD Rc Rc       
+1 11 162 1 ADD Rc Rd       
+1 11 162 0 ADD Rc Rd       
+1 12 199 1 ADD Rd Ra       
+1 12 199 0 ADD Rd Ra       
+1 13 236 1 ADD Rd Rb       
+1 13 236 0 ADD Rd Rb       
+1 14 17 1 ADD Rd Rc       
+1 14 17 0 ADD Rd Rc       
+1 15 54 1 ADD Rd Rd       
+1 15 54 0 ADD Rd Rd       
+1 16 91 1 SUB Ra Ra       
+1 16 91 0 SUB Ra Ra       
+1 17 128 1 SUB Ra Rb       
+1 17 128 0 SUB Ra Rb       
+1 18 165 1 SUB Ra Rc       
+1 18 165 0 SUB Ra Rc       
+1 19 202 1 SUB Ra Rd       
+1 19 202 0 SUB Ra Rd       
+1 20 239 1 SUB Rb Ra       
+1 20 239 0 SUB Rb Ra       
+1 21 20 1 SUB Rb Rb       
+1 21 20 0 SUB Rb Rb       
+1 22 57 1 SUB Rb Rc       
+1 22 57 0 SUB Rb Rc       
+1 23 94 1 SUB Rb Rd       
+1 23 94 0 SUB Rb Rd       
+1 24 131 1 SUB Rc Ra       
+1 24 131 0 SUB Rc Ra       
+1 25 168 1 SUB Rc Rb       
+1 25 168 0 SUB Rc Rb       
+1 26 205 1 SUB Rc Rc       
+1 26 205 0 SUB Rc Rc       
+1 27 242 1 SUB Rc Rd       
+1 27 242 0 SUB Rc Rd       
+1 28 23 1 SUB Rd Ra       
+1 28 23 0 SUB Rd Ra       
+1 29 60 1 SUB Rd Rb       
+1 29 60 0 SUB Rd Rb       
+1 30 97 1 SUB Rd Rc       
+1 30 97 0 SUB Rd Rc       
+1 31 134 1 SUB Rd Rd       
+1 31 134 0 SUB Rd Rd       
+1 32 171 1 INC Ra          
+1 32 171 0 INC Ra          
+1 33 208 1 DEC Ra          
+1 33 208 0 DEC Ra          
+1 34 245 1 NOP (0x22)      
+1 34 245 0 NOP (0x22)      
+1 35 26 1 NOP (0x23)      
+1 35 26 0 NOP (0x23)      
+1 36 63 1 INC Rb          
+1 36 63 0 INC Rb          
+1 37 100 1 DEC Rb          
+1 37 100 0 DEC Rb          
+1 38 137 1 NOP (0x26)      
+1 38 137 0 NOP (0x26)      
+1 39 174 1 NOP (0x27)      
+1 39 174 0 NOP (0x27)      
+1 40 211 1 INC Rc          
+1 40 211 0 INC Rc          
+1 41 248 1 DEC Rc          
+1 41 248 0 DEC Rc          
+1 42 29 1 NOP (0x2A)      
+1 42 29 0 NOP (0x2A)      
+1 43 66 1 NOP (0x2B)      
+1 43 66 0 NOP (0x2B)      
+1 44 103 1 INC Rd          
+1 44 103 0 INC Rd          
+1 45 140 1 DEC Rd          
+1 45 140 0 DEC Rd          
+1 46 177 1 NOP (0x2E)      
+1 46 177 0 NOP (0x2E)      
+1 47 214 1 NOP (0x2F)      
+1 47 214 0 NOP (0x2F)      
+1 48 251 1 AND Ra Ra       
+1 48 251 0 AND Ra Ra       
+1 49 32 1 AND Ra Rb       
+1 49 32 0 AND Ra Rb       
+1 50 69 1 AND Ra Rc       
+1 50 69 0 AND Ra Rc       
+1 51 106 1 AND Ra Rd       
+1 51 106 0 AND Ra Rd       
+1 52 143 1 AND Rb Ra       
+1 52 143 0 AND Rb Ra       
+1 53 180 1 AND Rb Rb       
+1 53 180 0 AND Rb Rb       
+1 54 217 1 AND Rb Rc       
+1 54 217 0 AND Rb Rc       
+1 55 254 1 AND Rb Rd       
+1 55 254 0 AND Rb Rd       
+1 56 35 1 AND Rc Ra       
+1 56 35 0 AND Rc Ra       
+1 57 72 1 AND Rc Rb       
+1 57 72 0 AND Rc Rb       
+1 58 109 1 AND Rc Rc       
+1 58 109 0 AND Rc Rc       
+1 59 146 1 AND Rc Rd       
+1 59 146 0 AND Rc Rd       
+1 60 183 1 AND Rd Ra       
+1 60 183 0 AND Rd Ra       
+1 61 220 1 AND Rd Rb       
+1 61 220 0 AND Rd Rb       
+1 62 1 1 AND Rd Rc       
+1 62 1 0 AND Rd Rc       
+1 63 38 1 AND Rd Rd       
+1 63 38 0 AND Rd Rd       
+1 64 75 1 OR Ra Ra        
+1 64 75 0 OR Ra Ra        
+1 65 112 1 OR Ra Rb        
+1 65 112 0 OR Ra Rb        
+1 66 149 1 OR Ra Rc        
+1 66 149 0 OR Ra Rc        
+1 67 186 1 OR Ra Rd        
+1 67 186 0 OR Ra Rd        
+1 68 223 1 OR Rb Ra        
+1 68 223 0 OR Rb Ra        
+1 69 4 1 OR Rb Rb        
+1 69 4 0 OR Rb Rb        
+1 70 41 1 OR Rb Rc        
+1 70 41 0 OR Rb Rc        
+1 71 78 1 OR Rb Rd        
+1 71 78 0 OR Rb Rd        
+1 72 115 1 OR Rc Ra        
+1 72 115 0 OR Rc Ra        
+1 73 152 1 OR Rc Rb        
+1 73 152 0 OR Rc Rb        
+1 74 189 1 OR Rc Rc        
+1 74 189 0 OR Rc Rc        
+1 75 226 1 OR Rc Rd        
+1 75 226 0 OR Rc Rd        
+1 76 7 1 OR Rd Ra        
+1 76 7 0 OR Rd Ra        
+1 77 44 1 OR Rd Rb        
+1 77 44 0 OR Rd Rb        
+1 78 81 1 OR Rd Rc        
+1 78 81 0 OR Rd Rc        
+1 79 118 1 OR Rd Rd        
+1 79 118 0 OR Rd Rd        
+1 80 155 1 NOT Ra          
+1 80 155 0 NOT Ra          
+1 81 192 1 NOP (0x51)      
+1 81 192 0 NOP (0x51)      
+1 82 229 1 NOP (0x52)      
+1 82 229 0 NOP (0x52)      
+1 83 10 1 NOP (0x53)      
+1 83 10 0 NOP (0x53)      
+1 84 47 1 NOT Rb          
+1 84 47 0 NOT Rb          
+1 85 84 1 NOP (0x55)      
+1 85 84 0 NOP (0x55)      
+1 86 121 1 NOP (0x56)      
+1 86 121 0 NOP (0x56)      
+1 87 158 1 NOP (0x57)      
+1 87 158 0 NOP (0x57)      
+1 88 195 1 NOT Rc          
+1 88 195 0 NOT Rc          
+1 89 232 1 NOP (0x59)      
+1 89 232 0 NOP (0x59)      
+1 90 13 1 NOP (0x5A)      
+1 90 13 0 NOP (0x5A)      
+1 91 50 1 NOP (0x5B)      
+1 91 50 0 NOP (0x5B)      
+1 92 87 1 NOT Rd          
+1 92 87 0 NOT Rd          
+1 93 124 1 NOP (0x5D)      
+1 93 124 0 NOP (0x5D)      
+1 94 161 1 NOP (0x5E)      
+1 94 161 0 NOP (0x5E)      
+1 95 198 1 NOP (0x5F)      
+1 95 198 0 NOP (0x5F)      
+1 96 235 1 XOR Ra Ra       
+1 96 235 0 XOR Ra Ra       
+1 97 16 1 XOR Ra Rb       
+1 97 16 0 XOR Ra Rb       
+1 98 53 1 XOR Ra Rc       
+1 98 53 0 XOR Ra Rc       
+1 99 90 1 XOR Ra Rd       
+1 99 90 0 XOR Ra Rd       
+1 100 127 1 XOR Rb Ra       
+1 100 127 0 XOR Rb Ra       
+1 101 164 1 XOR Rb Rb       
+1 101 164 0 XOR Rb Rb       
+1 102 201 1 XOR Rb Rc       
+1 102 201 0 XOR Rb Rc       
+1 103 238 1 XOR Rb Rd       
+1 103 238 0 XOR Rb Rd       
+1 104 19 1 XOR Rc Ra       
+1 104 19 0 XOR Rc Ra       
+1 105 56 1 XOR Rc Rb       
+1 105 56 0 XOR Rc Rb       
+1 106 93 1 XOR Rc Rc       
+1 106 93 0 XOR Rc Rc       
+1 107 130 1 XOR Rc Rd       
+1 107 130 0 XOR Rc Rd       
+1 108 167 1 XOR Rd Ra       
+1 108 167 0 XOR Rd Ra       
+1 109 204 1 XOR Rd Rb       
+1 109 204 0 XOR Rd Rb       
+1 110 241 1 XOR Rd Rc       
+1 110 241 0 XOR Rd Rc       
+1 111 22 1 XOR Rd Rd       
+1 111 22 0 XOR Rd Rd       
+1 112 59 1 ROL Ra          
+1 112 59 0 ROL Ra          
+1 113 96 1 ROR Ra          
+1 113 96 0 ROR Ra          
+1 114 133 1 LSL Ra          
+1 114 133 0 LSL Ra          
+1 115 170 1 LSR Ra          
+1 115 170 0 LSR Ra          
+1 116 207 1 ROL Rb          
+1 116 207 0 ROL Rb          
+1 117 244 1 ROR Rb          
+1 117 244 0 ROR Rb          
+1 118 25 1 LSL Rb          
+1 118 25 0 LSL Rb          
+1 119 62 1 LSR Rb          
+1 119 62 0 LSR Rb          
+1 120 99 1 ROL Rc          
+1 120 99 0 ROL Rc          
+1 121 136 1 ROR Rc          
+1 121 136 0 ROR Rc          
+1 122 173 1 LSL Rc          
+1 122 173 0 LSL Rc          
+1 123 210 1 LSR Rc          
+1 123 210 0 LSR Rc          
+1 124 247 1 ROL Rd          
+1 124 247 0 ROL Rd          
+1 125 28 1 ROR Rd          
+1 125 28 0 ROR Rd          
+1 126 65 1 LSL Rd          
+1 126 65 0 LSL Rd          
+1 127 102 1 LSR Rd          
+1 127 102 0 LSR Rd          
+1 128 139 1 PUSH Ra         
+1 128 139 0 PUSH Ra         
+1 129 176 1 POP Ra          
+1 129 176 0 POP Ra          
+1 130 213 1 ST Ra, 0xD5     
+1 130 213 0 ST Ra, 0x--     
+1 131 250 1 LDI Ra, 0xFA    
+1 131 250 0 LDI Ra, 0x--    
+1 132 31 1 PUSH Rb         
+1 132 31 0 PUSH Rb         
+1 133 68 1 POP Rb          
+1 133 68 0 POP Rb          
+1 134 105 1 ST Rb, 0x69     
+1 134 105 0 ST Rb, 0x--     
+1 135 142 1 LDI Rb, 0x8E    
+1 135 142 0 LDI Rb, 0x--    
+1 136 179 1 PUSH Rc         
+1 136 179 0 PUSH Rc         
+1 137 216 1 POP Rc          
+1 137 216 0 POP Rc          
+1 138 253 1 ST Rc, 0xFD     
+1 138 253 0 ST Rc, 0x--     
+1 139 34 1 LDI Rc, 0x22    
+1 139 34 0 LDI Rc, 0x--    
+1 140 71 1 PUSH Rd         
+1 140 71 0 PUSH Rd         
+1 141 108 1 POP Rd          
+1 141 108 0 POP Rd          
+1 142 145 1 ST Rd, 0x91     
+1 142 145 0 ST Rd, 0x--     
+1 143 182 1 LDI Rd, 0xB6    
+1 143 182 0 LDI Rd, 0x--    
+1 144 219 1 LDR Ra [Ra]     
+1 144 219 0 LDR Ra [Ra]     
+1 145 0 1 LDR Ra [Rb]     
+1 145 0 0 LDR Ra [Rb]     
+1 146 37 1 LDR Ra [Rc]     
+1 146 37 0 LDR Ra [Rc]     
+1 147 74 1 LDR Ra [Rd]     
+1 147 74 0 LDR Ra [Rd]     
+1 148 111 1 LDR Rb [Ra]     
+1 148 111 0 LDR Rb [Ra]     
+1 149 148 1 LDR Rb [Rb]     
+1 149 148 0 LDR Rb [Rb]     
+1 150 185 1 LDR Rb [Rc]     
+1 150 185 0 LDR Rb [Rc]     
+1 151 222 1 LDR Rb [Rd]     
+1 151 222 0 LDR Rb [Rd]     
+1 152 3 1 LDR Rc [Ra]     
+1 152 3 0 LDR Rc [Ra]     
+1 153 40 1 LDR Rc [Rb]     
+1 153 40 0 LDR Rc [Rb]     
+1 154 77 1 LDR Rc [Rc]     
+1 154 77 0 LDR Rc [Rc]     
+1 155 114 1 LDR Rc [Rd]     
+1 155 114 0 LDR Rc [Rd]     
+1 156 151 1 LDR Rd [Ra]     
+1 156 151 0 LDR Rd [Ra]     
+1 157 188 1 LDR Rd [Rb]     
+1 157 188 0 LDR Rd [Rb]     
+1 158 225 1 LDR Rd [Rc]     
+1 158 225 0 LDR Rd [Rc]     
+1 159 6 1 LDR Rd [Rd]     
+1 159 6 0 LDR Rd [Rd]     
+1 160 43 1 STR Ra [Ra]     
+1 160 43 0 STR Ra [Ra]     
+1 161 80 1 STR Ra [Rb]     
+1 161 80 0 STR Ra [Rb]     
+1 162 117 1 STR Ra [Rc]     
+1 162 117 0 STR Ra [Rc]     
+1 163 154 1 STR Ra [Rd]     
+1 163 154 0 STR Ra [Rd]     
+1 164 191 1 STR Rb [Ra]     
+1 164 191 0 STR Rb [Ra]     
+1 165 228 1 STR Rb [Rb]     
+1 165 228 0 STR Rb [Rb]     
+1 166 9 1 STR Rb [Rc]     
+1 166 9 0 STR Rb [Rc]     
+1 167 46 1 STR Rb [Rd]     
+1 167 46 0 STR Rb [Rd]     
+1 168 83 1 STR Rc [Ra]     
+1 168 83 0 STR Rc [Ra]     
+1 169 120 1 STR Rc [Rb]     
+1 169 120 0 STR Rc [Rb]     
+1 170 157 1 STR Rc [Rc]     
+1 170 157 0 STR Rc [Rc]     
+1 171 194 1 STR Rc [Rd]     
+1 171 194 0 STR Rc [Rd]     
+1 172 231 1 STR Rd [Ra]     
+1 172 231 0 STR Rd [Ra]     
+1 173 12 1 STR Rd [Rb]     
+1 173 12 0 STR Rd [Rb]     
+1 174 49 1 STR Rd [Rc]     
+1 174 49 0 STR Rd [Rc]     
+1 175 86 1 STR Rd [Rd]     
+1 175 86 0 STR Rd [Rd]     
+1 176 123 1 MOV Ra Ra       
+1 176 123 0 MOV Ra Ra       
+1 177 160 1 MOV Ra Rb       
+1 177 160 0 MOV Ra Rb       
+1 178 197 1 MOV Ra Rc       
+1 178 197 0 MOV Ra Rc       
+1 179 234 1 MOV Ra Rd       
+1 179 234 0 MOV Ra Rd       
+1 180 15 1 MOV Rb Ra       
+1 180 15 0 MOV Rb Ra       
+1 181 52 1 MOV Rb Rb       
+1 181 52 0 MOV Rb Rb       
+1 182 89 1 MOV Rb Rc       
+1 182 89 0 MOV Rb Rc       
+1 183 126 1 MOV Rb Rd       
+1 183 126 0 MOV Rb Rd       
+1 184 163 1 MOV Rc Ra       
+1 184 163 0 MOV Rc Ra       
+1 185 200 1 MOV Rc Rb       
+1 185 200 0 MOV Rc Rb       
+1 186 237 1 MOV Rc Rc       
+1 186 237 0 MOV Rc Rc       
+1 187 18 1 MOV Rc Rd       
+1 187 18 0 MOV Rc Rd       
+1 188 55 1 MOV Rd Ra       
+1 188 55 0 MOV Rd Ra       
+1 189 92 1 MOV Rd Rb       
+1 189 92 0 MOV Rd Rb       
+1 190 129 1 MOV Rd Rc       
+1 190 129 0 MOV Rd Rc       
+1 191 166 1 MOV Rd Rd       
+1 191 166 0 MOV Rd Rd       
+1 192 203 1 JMP 0xCB        
+1 192 203 0 JMP 0x--        
+1 193 240 1 JMPR Ra         
+1 193 240 0 JMPR Ra         
+1 194 21 1 BZ Ra           
+1 194 21 0 BZ Ra           
+1 195 58 1 BNZ Ra          
+1 195 58 0 BNZ Ra          
+1 196 95 1 NOP (0xC4)      
+1 196 95 0 NOP (0xC4)      
+1 197 132 1 JMPR Rb         
+1 197 132 0 JMPR Rb         
+1 198 169 1 BZ Rb           
+1 198 169 0 BZ Rb           
+1 199 206 1 BNZ Rb          
+1 199 206 0 BNZ Rb          
+1 200 243 1 NOP (0xC8)      
+1 200 243 0 NOP (0xC8)      
+1 201 24 1 JMPR Rc         
+1 201 24 0 JMPR Rc         
+1 202 61 1 BZ Rc           
+1 202 61 0 BZ Rc           
+1 203 98 1 BNZ Rc          
+1 203 98 0 BNZ Rc          
+1 204 135 1 NOP (0xCC)      
+1 204 135 0 NOP (0xCC)      
+1 205 172 1 JMPR Rd         
+1 205 172 0 JMPR Rd         
+1 206 209 1 BZ Rd           
+1 206 209 0 BZ Rd           
+1 207 246 1 BNZ Rd          
+1 207 246 0 BNZ Rd          
+1 208 27 1 BCS Ra          
+1 208 27 0 BCS Ra          
+1 209 64 1 BCC Ra          
+1 209 64 0 BCC Ra          
+1 210 101 1 BEQ Ra          
+1 210 101 0 BEQ Ra          
+1 211 138 1 BNEQ Ra         
+1 211 138 0 BNEQ Ra         
+1 212 175 1 BCS Rb          
+1 212 175 0 BCS Rb          
+1 213 212 1 BCC Rb          
+1 213 212 0 BCC Rb          
+1 214 249 1 BEQ Rb          
+1 214 249 0 BEQ Rb          
+1 215 30 1 BNEQ Rb         
+1 215 30 0 BNEQ Rb         
+1 216 67 1 BCS Rc          
+1 216 67 0 BCS Rc          
+1 217 104 1 BCC Rc          
+1 217 104 0 BCC Rc          
+1 218 141 1 BEQ Rc          
+1 218 141 0 BEQ Rc          
+1 219 178 1 BNEQ Rc         
+1 219 178 0 BNEQ Rc         
+1 220 215 1 BCS Rd          
+1 220 215 0 BCS Rd          
+1 221 252 1 BCC Rd          
+1 221 252 0 BCC Rd          
+1 222 33 1 BEQ Rd          
+1 222 33 0 BEQ Rd          
+1 223 70 1 BNEQ Rd         
+1 223 70 0 BNEQ Rd         
+1 224 107 1 BGT Ra          
+1 224 107 0 BGT Ra          
+1 225 144 1 BLT Ra          
+1 225 144 0 BLT Ra          
+1 226 181 1 BNEG Ra         
+1 226 181 0 BNEG Ra         
+1 227 218 1 NOP (0xE3)      
+1 227 218 0 NOP (0xE3)      
+1 228 255 1 BGT Rb          
+1 228 255 0 BGT Rb          
+1 229 36 1 BLT Rb          
+1 229 36 0 BLT Rb          
+1 230 73 1 BNEG Rb         
+1 230 73 0 BNEG Rb         
+1 231 110 1 NOP (0xE7)      
+1 231 110 0 NOP (0xE7)      
+1 232 147 1 BGT Rc          
+1 232 147 0 BGT Rc          
+1 233 184 1 BLT Rc          
+1 233 184 0 BLT Rc          
+1 234 221 1 BNEG Rc         
+1 234 221 0 BNEG Rc         
+1 235 2 1 NOP (0xEB)      
+1 235 2 0 NOP (0xEB)      
+1 236 39 1 BGT Rd          
+1 236 39 0 BGT Rd          
+1 237 76 1 BLT Rd          
+1 237 76 0 BLT Rd          
+1 238 113 1 BNEG Rd         
+1 238 113 0 BNEG Rd         
+1 239 150 1 NOP (0xEF)      
+1 239 150 0 NOP (0xEF)      
+1 240 187 1 NOP             
+1 240 187 0 NOP             
+1 241 224 1 NOP (0xF1)      
+1 241 224 0 NOP (0xF1)      
+1 242 5 1 NOP (0xF2)      
+1 242 5 0 NOP (0xF2)      
+1 243 42 1 NOP (0xF3)      
+1 243 42 0 NOP (0xF3)      
+1 244 79 1 NOP (0xF4)      
+1 244 79 0 NOP (0xF4)      
+1 245 116 1 NOP (0xF5)      
+1 245 116 0 NOP (0xF5)      
+1 246 153 1 NOP (0xF6)      
+1 246 153 0 NOP (0xF6)      
+1 247 190 1 NOP (0xF7)      
+1 247 190 0 NOP (0xF7)      
+1 248 227 1 NOP (0xF8)      
+1 248 227 0 NOP (0xF8)      
+1 249 8 1 NOP (0xF9)      
+1 249 8 0 NOP (0xF9)      
+1 250 45 1 NOP (0xFA)      
+1 250 45 0 NOP (0xFA)      
+1 251 82 1 NOP (0xFB)      
+1 251 82 0 NOP (0xFB)      
+1 252 119 1 NOP (0xFC)      
+1 252 119 0 NOP (0xFC)      
+1 253 156 1 NOP (0xFD)      
+1 253 156 0 NOP (0xFD)      
+1 254 193 1 NOP (0xFE)      
+1 254 193 0 NOP (0xFE)      
+1 255 230 1 HALT            
+1 255 230 0 HALT            
+0 0 0 0 RESET           
+0 255 255 1 RESET           
+2 0 0 0 MEM[255] = 000  
+2 1 0 0 MEM[255] = 001  
+2 2 0 0 MEM[255] = 002  
+2 3 0 0 MEM[255] = 003  
+2 4 0 0 MEM[255] = 004  
+2 5 0 0 MEM[255] = 005  
+2 6 0 0 MEM[255] = 006  
+2 7 0 0 MEM[255] = 007  
+2 8 0 0 MEM[255] = 008  
+2 9 0 0 MEM[255] = 009  
+2 10 0 0 MEM[255] = 010  
+2 11 0 0 MEM[255] = 011  
+2 12 0 0 MEM[255] = 012  
+2 13 0 0 MEM[255] = 013  
+2 14 0 0 MEM[255] = 014  
+2 15 0 0 MEM[255] = 015  
+2 16 0 0 MEM[255] = 016  
+2 17 0 0 MEM[255] = 017  
+2 18 0 0 MEM[255] = 018  
+2 19 0 0 MEM[255] = 019  
+2 20 0 0 MEM[255] = 020  
+2 21 0 0 MEM[255] = 021  
+2 22 0 0 MEM[255] = 022  
+2 23 0 0 MEM[255] = 023  
+2 24 0 0 MEM[255] = 024  
+2 25 0 0 MEM[255] = 025  
+2 26 0 0 MEM[255] = 026  
+2 27 0 0 MEM[255] = 027  
+2 28 0 0 MEM[255] = 028  
+2 29 0 0 MEM[255] = 029  
+2 30 0 0 MEM[255] = 030  
+2 31 0 0 MEM[255] = 031  
+2 32 0 0 MEM[255] = 032  
+2 33 0 0 MEM[255] = 033  
+2 34 0 0 MEM[255] = 034  
+2 35 0 0 MEM[255] = 035  
+2 36 0 0 MEM[255] = 036  
+2 37 0 0 MEM[255] = 037  
+2 38 0 0 MEM[255] = 038  
+2 39 0 0 MEM[255] = 039  
+2 40 0 0 MEM[255] = 040  
+2 41 0 0 MEM[255] = 041  
+2 42 0 0 MEM[255] = 042  
+2 43 0 0 MEM[255] = 043  
+2 44 0 0 MEM[255] = 044  
+2 45 0 0 MEM[255] = 045  
+2 46 0 0 MEM[255] = 046  
+2 47 0 0 MEM[255] = 047  
+2 48 0 0 MEM[255] = 048  
+2 49 0 0 MEM[255] = 049  
+2 50 0 0 MEM[255] = 050  
+2 51 0 0 MEM[255] = 051  
+2 52 0 0 MEM[255] = 052  
+2 53 0 0 MEM[255] = 053  
+2 54 0 0 MEM[255] = 054  
+2 55 0 0 MEM[255] = 055  
+2 56 0 0 MEM[255] = 056  
+2 57 0 0 MEM[255] = 057  
+2 58 0 0 MEM[255] = 058  
+2 59 0 0 MEM[255] = 059  
+2 60 0 0 MEM[255] = 060  
+2 61 0 0 MEM[255] = 061  
+2 62 0 0 MEM[255] = 062  
+2 63 0 0 MEM[255] = 063  
+2 64 0 0 MEM[255] = 064  
+2 65 0 0 MEM[255] = 065  
+2 66 0 0 MEM[255] = 066  
+2 67 0 0 MEM[255] = 067  
+2 68 0 0 MEM[255] = 068  
+2 69 0 0 MEM[255] = 069  
+2 70 0 0 MEM[255] = 070  
+2 71 0 0 MEM[255] = 071  
+2 72 0 0 MEM[255] = 072  
+2 73 0 0 MEM[255] = 073  
+2 74 0 0 MEM[255] = 074  
+2 75 0 0 MEM[255] = 075  
+2 76 0 0 MEM[255] = 076  
+2 77 0 0 MEM[255] = 077  
+2 78 0 0 MEM[255] = 078  
+2 79 0 0 MEM[255] = 079  
+2 80 0 0 MEM[255] = 080  
+2 81 0 0 MEM[255] = 081  
+2 82 0 0 MEM[255] = 082  
+2 83 0 0 MEM[255] = 083  
+2 84 0 0 MEM[255] = 084  
+2 85 0 0 MEM[255] = 085  
+2 86 0 0 MEM[255] = 086  
+2 87 0 0 MEM[255] = 087  
+2 88 0 0 MEM[255] = 088  
+2 89 0 0 MEM[255] = 089  
+2 90 0 0 MEM[255] = 090  
+2 91 0 0 MEM[255] = 091  
+2 92 0 0 MEM[255] = 092  
+2 93 0 0 MEM[255] = 093  
+2 94 0 0 MEM[255] = 094  
+2 95 0 0 MEM[255] = 095  
+2 96 0 0 MEM[255] = 096  
+2 97 0 0 MEM[255] = 097  
+2 98 0 0 MEM[255] = 098  
+2 99 0 0 MEM[255] = 099  
+2 100 0 0 MEM[255] = 100  
+2 101 0 0 MEM[255] = 101  
+2 102 0 0 MEM[255] = 102  
+2 103 0 0 MEM[255] = 103  
+2 104 0 0 MEM[255] = 104  
+2 105 0 0 MEM[255] = 105  
+2 106 0 0 MEM[255] = 106  
+2 107 0 0 MEM[255] = 107  
+2 108 0 0 MEM[255] = 108  
+2 109 0 0 MEM[255] = 109  
+2 110 0 0 MEM[255] = 110  
+2 111 0 0 MEM[255] = 111  
+2 112 0 0 MEM[255] = 112  
+2 113 0 0 MEM[255] = 113  
+2 114 0 0 MEM[255] = 114  
+2 115 0 0 MEM[255] = 115  
+2 116 0 0 MEM[255] = 116  
+2 117 0 0 MEM[255] = 117  
+2 118 0 0 MEM[255] = 118  
+2 119 0 0 MEM[255] = 119  
+2 120 0 0 MEM[255] = 120  
+2 121 0 0 MEM[255] = 121  
+2 122 0 0 MEM[255] = 122  
+2 123 0 0 MEM[255] = 123  
+2 124 0 0 MEM[255] = 124  
+2 125 0 0 MEM[255] = 125  
+2 126 0 0 MEM[255] = 126  
+2 127 0 0 MEM[255] = 127  
+2 128 0 0 MEM[255] = 128  
+2 129 0 0 MEM[255] = 129  
+2 130 0 0 MEM[255] = 130  
+2 131 0 0 MEM[255] = 131  
+2 132 0 0 MEM[255] = 132  
+2 133 0 0 MEM[255] = 133  
+2 134 0 0 MEM[255] = 134  
+2 135 0 0 MEM[255] = 135  
+2 136 0 0 MEM[255] = 136  
+2 137 0 0 MEM[255] = 137  
+2 138 0 0 MEM[255] = 138  
+2 139 0 0 MEM[255] = 139  
+2 140 0 0 MEM[255] = 140  
+2 141 0 0 MEM[255] = 141  
+2 142 0 0 MEM[255] = 142  
+2 143 0 0 MEM[255] = 143  
+2 144 0 0 MEM[255] = 144  
+2 145 0 0 MEM[255] = 145  
+2 146 0 0 MEM[255] = 146  
+2 147 0 0 MEM[255] = 147  
+2 148 0 0 MEM[255] = 148  
+2 149 0 0 MEM[255] = 149  
+2 150 0 0 MEM[255] = 150  
+2 151 0 0 MEM[255] = 151  
+2 152 0 0 MEM[255] = 152  
+2 153 0 0 MEM[255] = 153  
+2 154 0 0 MEM[255] = 154  
+2 155 0 0 MEM[255] = 155  
+2 156 0 0 MEM[255] = 156  
+2 157 0 0 MEM[255] = 157  
+2 158 0 0 MEM[255] = 158  
+2 159 0 0 MEM[255] = 159  
+2 160 0 0 MEM[255] = 160  
+2 161 0 0 MEM[255] = 161  
+2 162 0 0 MEM[255] = 162  
+2 163 0 0 MEM[255] = 163  
+2 164 0 0 MEM[255] = 164  
+2 165 0 0 MEM[255] = 165  
+2 166 0 0 MEM[255] = 166  
+2 167 0 0 MEM[255] = 167  
+2 168 0 0 MEM[255] = 168  
+2 169 0 0 MEM[255] = 169  
+2 170 0 0 MEM[255] = 170  
+2 171 0 0 MEM[255] = 171  
+2 172 0 0 MEM[255] = 172  
+2 173 0 0 MEM[255] = 173  
+2 174 0 0 MEM[255] = 174  
+2 175 0 0 MEM[255] = 175  
+2 176 0 0 MEM[255] = 176  
+2 177 0 0 MEM[255] = 177  
+2 178 0 0 MEM[255] = 178  
+2 179 0 0 MEM[255] = 179  
+2 180 0 0 MEM[255] = 180  
+2 181 0 0 MEM[255] = 181  
+2 182 0 0 MEM[255] = 182  
+2 183 0 0 MEM[255] = 183  
+2 184 0 0 MEM[255] = 184  
+2 185 0 0 MEM[255] = 185  
+2 186 0 0 MEM[255] = 186  
+2 187 0 0 MEM[255] = 187  
+2 188 0 0 MEM[255] = 188  
+2 189 0 0 MEM[255] = 189  
+2 190 0 0 MEM[255] = 190  
+2 191 0 0 MEM[255] = 191  
+2 192 0 0 MEM[255] = 192  
+2 193 0 0 MEM[255] = 193  
+2 194 0 0 MEM[255] = 194  
+2 195 0 0 MEM[255] = 195  
+2 196 0 0 MEM[255] = 196  
+2 197 0 0 MEM[255] = 197  
+2 198 0 0 MEM[255] = 198  
+2 199 0 0 MEM[255] = 199  
+2 200 0 0 MEM[255] = 200  
+2 201 0 0 MEM[255] = 201  
+2 202 0 0 MEM[255] = 202  
+2 203 0 0 MEM[255] = 203  
+2 204 0 0 MEM[255] = 204  
+2 205 0 0 MEM[255] = 205  
+2 206 0 0 MEM[255] = 206  
+2 207 0 0 MEM[255] = 207  
+2 208 0 0 MEM[255] = 208  
+2 209 0 0 MEM[255] = 209  
+2 210 0 0 MEM[255] = 210  
+2 211 0 0 MEM[255] = 211  
+2 212 0 0 MEM[255] = 212  
+2 213 0 0 MEM[255] = 213  
+2 214 0 0 MEM[255] = 214  
+2 215 0 0 MEM[255] = 215  
+2 216 0 0 MEM[255] = 216  
+2 217 0 0 MEM[255] = 217  
+2 218 0 0 MEM[255] = 218  
+2 219 0 0 MEM[255] = 219  
+2 220 0 0 MEM[255] = 220  
+2 221 0 0 MEM[255] = 221  
+2 222 0 0 MEM[255] = 222  
+2 223 0 0 MEM[255] = 223  
+2 224 0 0 MEM[255] = 224  
+2 225 0 0 MEM[255] = 225  
+2 226 0 0 MEM[255] = 226  
+2 227 0 0 MEM[255] = 227  
+2 228 0 0 MEM[255] = 228  
+2 229 0 0 MEM[255] = 229  
+2 230 0 0 MEM[255] = 230  
+2 231 0 0 MEM[255] = 231  
+2 232 0 0 MEM[255] = 232  
+2 233 0 0 MEM[255] = 233  
+2 234 0 0 MEM[255] = 234  
+2 235 0 0 MEM[255] = 235  
+2 236 0 0 MEM[255] = 236  
+2 237 0 0 MEM[255] = 237  
+2 238 0 0 MEM[255] = 238  
+2 239 0 0 MEM[255] = 239  
+2 240 0 0 MEM[255] = 240  
+2 241 0 0 MEM[255] = 241  
+2 242 0 0 MEM[255] = 242  
+2 243 0 0 MEM[255] = 243  
+2 244 0 0 MEM[255] = 244  
+2 245 0 0 MEM[255] = 245  
+2 246 0 0 MEM[255] = 246  
+2 247 0 0 MEM[255] = 247  
+2 248 0 0 MEM[255] = 248  
+2 249 0 0 MEM[255] = 249  
+2 250 0 0 MEM[255] = 250  
+2 251 0 0 MEM[255] = 251  
+2 252 0 0 MEM[255] = 252  
+2 253 0 0 MEM[255] = 253  
+2 254 0 0 MEM[255] = 254  
+2 255 0 0 MEM[255] = 255  

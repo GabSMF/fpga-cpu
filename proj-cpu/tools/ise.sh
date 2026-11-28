@@ -14,12 +14,13 @@ MODO="${1:-tudo}"; shift || true
 
 # Ordem de compilacao (dependencias primeiro)
 RTL="${RTL:-alu lcd_pkg lcd_texto lcd RAM_8x256 cpu main}"
+TB_AUX="lcd_modelo"
 TBS_PADRAO="tb_alu tb_ram tb_lcd_texto tb_cpu_programas tb_lcd tb_main"
 TBS="${*:-$TBS_PADRAO}"
 
 docker run --rm -u xilinx -e HOME=/home/xilinx \
     -v "$PROJ:/proj:ro" -v "$PROJ/build:/saida" \
-    -e MODO="$MODO" -e RTL="$RTL" -e TBS="$TBS" \
+    -e MODO="$MODO" -e RTL="$RTL" -e TBS="$TBS" -e TB_AUX="$TB_AUX" \
     xilinx-ise:14.7 /bin/bash -lc '
 source /opt/Xilinx/14.7/ISE_DS/settings64.sh >/dev/null 2>&1
 set -u
@@ -28,6 +29,9 @@ falhou=0
 if [ "$MODO" = sim ] || [ "$MODO" = tudo ]; then
     for f in $RTL; do
         vhpcomp ../rtl/$f.vhd > c.log 2>&1 || { cat c.log; exit 1; }
+    done
+    for f in $TB_AUX; do
+        vhpcomp ../tb/$f.vhd > c.log 2>&1 || { cat c.log; exit 1; }
     done
     for t in $TBS; do
         vhpcomp ../tb/$t.vhd > c.log 2>&1 || { grep -E "ERROR" c.log; falhou=1; continue; }

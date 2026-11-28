@@ -1,0 +1,5 @@
+LDI Ra, 0x0A    |MEM[255] = 000  
+ST Ra, 0xFF     |MEM[255] = 010  
+HALT            |MEM[255] = 010  
+HALT            |MEM[255] = 010  
+HALT            |MEM[255] = 010  

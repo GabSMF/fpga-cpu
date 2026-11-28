@@ -1,0 +1,14 @@
+LDI Ra, 0xFF    |MEM[255] = 000  
+LDI Rb, 0x01    |MEM[255] = 000  
+ADD Ra Rb       |MEM[255] = 000  
+LDI Ra, 0x03    |MEM[255] = 000  
+LDI Rb, 0x05    |MEM[255] = 000  
+SUB Ra Rb       |MEM[255] = 000  
+LDI Ra, 0x0A    |MEM[255] = 000  
+MOV Rb Ra       |MEM[255] = 000  
+SUB Ra Rb       |MEM[255] = 000  
+LDI Ra, 0x0A    |MEM[255] = 000  
+ST Ra, 0xFF     |MEM[255] = 010  
+HALT            |MEM[255] = 010  
+HALT            |MEM[255] = 010  
+HALT            |MEM[255] = 010  

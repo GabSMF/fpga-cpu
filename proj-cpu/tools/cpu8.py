@@ -11,6 +11,8 @@ Subcomandos:
   lcdref                       gera tb/dados/lcd_texto.txt (referencia do texto do LCD)
   lcdrom                       imprime a tabela de texto do LCD em VHDL (para rtl/lcd_pkg.vhd)
   table NOME                   imprime a tabela passo a passo (Markdown)
+  carregar NOME                copia programs/gen/NOME.vhd para rtl/RAM_8x256.vhd e registra
+                               o nome em tb/dados/carregado.txt (lido por tb_ram e tb_main)
 
 Arquivos gerados por build (programs/gen/):
   NOME.lst    listagem no formato do nasm.exe (bits // linha: fonte)
@@ -19,6 +21,7 @@ Arquivos gerados por build (programs/gen/):
   NOME.trace  uma linha por instrucao executada: IR FLAGS PROX_PC END_ESCRITA DADO_ESCRITO
   NOME.ram    conteudo final esperado da RAM (256 linhas, decimal)
   NOME.md     tabela passo a passo (PC, LCD, flags, MEM[255]) para a apresentacao
+  NOME.lcd    texto esperado no LCD ao fim de cada instrucao (LINHA1|LINHA2)
 """
 import os
 import re
@@ -468,7 +471,10 @@ def build(nome, exigir_nasm=False, verbose=True):
     escreve_mem(base + '.mem', mem)
     escreve_trace(base + '.trace', cpu)
     open(base + '.ram', 'w').write(''.join('%d\n' % b for b in cpu.mem))
-    open(base + '.md', 'w').write(tabela_md(cpu, nome))
+    n_halt = next(i for i, p in enumerate(cpu.passos) if p['mn'] == 'halt') + 1
+    open(base + '.md', 'w').write(tabela_md(cpu, nome, n_halt))  # ate o primeiro halt
+    open(base + '.lcd', 'w').write(''.join('%s|%s\n' % (linha1(p['ir'], p['arg']), linha2(p['io']))
+                                           for p in cpu.passos))
     if verbose:
         print('%-14s %4d bytes  %5d instrucoes  MEM[255]=%3d  montado por %s' % (
             nome, max(fonte) + 1, len(cpu.passos), cpu.mem[255], origem))
@@ -499,14 +505,17 @@ def relatorio_cobertura(cpus):
 
 
 def lcdref(path):
-    """Referencia para tb_lcd_texto: para cada IR e ARG de teste, a linha 1 esperada."""
+    """Referencia para tb_lcd_texto. Linhas: TIPO IR ARG ARG_OK TEXTO(16)
+    TIPO 1 = linha 1 com IR_OK=1; TIPO 0 = linha 1 com IR_OK=0; TIPO 2 = linha 2 (IR = MEM[255])."""
     with open(path, 'w') as f:
         for ir in range(256):
             arg = (ir * 37 + 11) & 0xFF
-            f.write('%d %d 1 %s\n' % (ir, arg, linha1(ir, arg)))
-            f.write('%d %d 0 %s\n' % (ir, arg, linha1(ir, arg, False)))
+            f.write('1 %d %d 1 %s\n' % (ir, arg, linha1(ir, arg)))
+            f.write('1 %d %d 0 %s\n' % (ir, arg, linha1(ir, arg, False)))
+        f.write('0 0 0 0 %s\n' % LINHA_RESET)
+        f.write('0 255 255 1 %s\n' % LINHA_RESET)
         for v in range(256):
-            f.write('L2 %d %s\n' % (v, linha2(v)))
+            f.write('2 %d 0 0 %s\n' % (v, linha2(v)))
 
 
 def lcdrom():
@@ -542,6 +551,7 @@ def main(argv):
             _, _, _, cob = relatorio_cobertura(cpus.values())
             print('  todos os programas: %d/32 instrucoes, reservados %s' % (
                 len([m for m in TODAS if m in cob]), 'sim' if 'reservado' in cob else 'nao'))
+            confere_resultados(cpus)
             gera_aleatorios()
             lcdref(os.path.join(RAIZ, 'tb', 'dados', 'lcd_texto.txt'))
             lista = nomes + ['aleatorio%02d' % i for i in range(N_ALEATORIOS)]
@@ -549,6 +559,8 @@ def main(argv):
                 for n in lista:
                     f.write('%s %d\n' % (n, sum(1 for _ in open(os.path.join(GEN, n + '.trace')))))
             print('tb/dados/programas.txt: %d programas' % len(lista))
+        elif cmd == 'carregar':
+            carregar(argv[2])
         elif cmd == 'lcdref':
             lcdref(os.path.join(RAIZ, 'tb', 'dados', 'lcd_texto.txt'))
         elif cmd == 'lcdrom':
@@ -564,6 +576,44 @@ def main(argv):
         print('ERRO:', e, file=sys.stderr)
         return 2
     return 0
+
+
+def confere_resultados(cpus):
+    """Confere os resultados por definicao (independente do emulador): Fibonacci e ordenacao."""
+    def io(c):
+        return [p['escrita'][1] for p in c.passos if p['escrita'] and p['escrita'][0] == 255]
+    fib = [0, 1]
+    while fib[-1] + fib[-2] < 256:
+        fib.append(fib[-1] + fib[-2])
+    ok = True
+    if 'fibonacci' in cpus:
+        c = cpus['fibonacci']
+        impares = sum(x & 1 for x in fib)
+        grandes = sum(x >= 128 for x in fib)
+        esperado = fib + [impares, grandes, 0xAA]
+        ok &= io(c)[:len(esperado)] == esperado and c.mem[0xC0:0xC0 + len(fib)] == fib
+    for nome, c in cpus.items():
+        if not nome.startswith('bubble'):
+            continue
+        fonte = open(os.path.join(PROGS, nome + '.asm')).read()
+        n = int(re.search(r'\.equ N, (\d+)', fonte).group(1))
+        dados = [int(x) for x in re.findall(r'\.byte (\d+)', fonte)]
+        ordenado = sorted(dados)
+        ok &= c.mem[0xE0:0xE0 + n] == ordenado and io(c)[:n] == ordenado
+        ok &= io(c)[n] == ordenado[n // 2] and io(c)[n + 1] == sum(x >= 128 for x in dados)
+    print('Resultados por definicao (Fibonacci e sorted()):', 'OK' if ok else 'DIVERGENCIA')
+    if not ok:
+        raise ErroAsm('resultado do programa diferente do esperado por definicao')
+
+
+def carregar(nome):
+    vhd = os.path.join(GEN, nome + '.vhd')
+    if not os.path.exists(vhd):
+        build(nome)
+    shutil.copy(vhd, os.path.join(RAIZ, 'rtl', 'RAM_8x256.vhd'))
+    with open(os.path.join(RAIZ, 'tb', 'dados', 'carregado.txt'), 'w') as f:
+        f.write(nome + '\n')
+    print('rtl/RAM_8x256.vhd <- programs/gen/%s.vhd' % nome)
 
 
 # ---------------------------------------------------------------------------

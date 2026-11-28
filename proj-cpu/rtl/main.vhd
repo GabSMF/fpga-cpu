@@ -3,7 +3,13 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 -- Entidade de topo (main) para a placa Spartan-3E Starter Kit (xc3s500e-4fg320).
--- Integra divisor de clock (~2s por instrucao completa), CPU, RAM e LEDs.
+-- Integra divisor de clock (~2s por instrucao completa), CPU, RAM, LEDs e LCD.
+--
+--   main
+--   +-- u_cpu    : cpu        (UC, registradores, flags)  clock lento clk_cpu
+--   |   +-- u_alu : alu       (combinacional)
+--   +-- u_memory : RAM_8x256  (borda de descida de clk_cpu)
+--   +-- u_lcd    : lcd        (clock de 50 MHz)
 entity main is
     generic (
         -- A 50 MHz, cada instrucao leva 5 ciclos de clk_cpu.
@@ -15,7 +21,13 @@ entity main is
     port (
         CLK_50MHZ : in  std_logic;
         RESET     : in  std_logic;                     -- Chave SW0 (1 = reset, 0 = executa)
-        LED       : out std_logic_vector(7 downto 0)   -- LD7..LD0 conforme Secao 3.1
+        LED       : out std_logic_vector(7 downto 0);  -- LD7..LD0 conforme Secao 3.1
+        -- LCD 16x2 (UG230, cap. 5); SF_D<11:8> sao DB7..DB4 do LCD
+        LCD_E     : out std_logic;
+        LCD_RS    : out std_logic;
+        LCD_RW    : out std_logic;
+        SF_CE0    : out std_logic;
+        SF_D      : out std_logic_vector(11 downto 8)
     );
 end entity main;
 
@@ -32,9 +44,11 @@ architecture Behavioral of main is
     signal ram_we   : std_logic;
     signal pos_255  : std_logic_vector(7 downto 0);
 
-    -- Sinais de observacao da CPU (para LEDs e futuro LCD)
+    -- Sinais de observacao da CPU (para LEDs e LCD)
     signal ir_sig   : std_logic_vector(7 downto 0);
     signal arg_sig  : std_logic_vector(7 downto 0);
+    signal ir_ok    : std_logic;
+    signal arg_ok   : std_logic;
     signal flag_z   : std_logic;
     signal flag_n   : std_logic;
     signal flag_ovf : std_logic;
@@ -68,6 +82,8 @@ begin
             WE       => ram_we,
             IR_OUT   => ir_sig,
             ARG_OUT  => arg_sig,
+            IR_OK    => ir_ok,
+            ARG_OK   => arg_ok,
             FLAG_Z   => flag_z,
             FLAG_N   => flag_n,
             FLAG_OVF => flag_ovf,
@@ -85,6 +101,22 @@ begin
             WE      => ram_we,
             DOUT    => ram_dout,
             POS_255 => pos_255
+        );
+
+    -- Instancia do LCD (clock de 50 MHz): linha 1 = instrucao do IR, linha 2 = MEM[255]
+    u_lcd : entity work.lcd(Behavioral)
+        port map (
+            CLK     => CLK_50MHZ,
+            IR      => ir_sig,
+            ARG     => arg_sig,
+            IR_OK   => ir_ok,
+            ARG_OK  => arg_ok,
+            POS_255 => pos_255,
+            LCD_E   => LCD_E,
+            LCD_RS  => LCD_RS,
+            LCD_RW  => LCD_RW,
+            LCD_DB  => SF_D,
+            SF_CE0  => SF_CE0
         );
 
     -- Mapeamento dos LEDs conforme Secao 3.1 do Enunciado (da esquerda para a direita):

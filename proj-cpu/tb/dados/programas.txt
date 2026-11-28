@@ -1,4 +1,9 @@
+bubble_iguais 152
+bubble_invertido 786
+bubble_oito 596
+bubble_ordenado 206
 bubble_sort 305
+bubble_um 46
 demo_flags 14
 fibonacci 472
 reservados 65
