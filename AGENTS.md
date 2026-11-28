@@ -132,7 +132,6 @@ tools/ise.sh sim tb_cpu_programas    # um testbench
 tools/ise.sh impl                    # XST, MAP, PAR, trce, bitgen -> build/main.bit
 tools/gera_bits.sh                   # build/bits/{demo_flags,fibonacci,bubble_sort}.bit
 tools/exportar_ise.sh                # projeto_ise/ (pasta única para abrir no ISE do laboratório)
-tools/pos_route.sh                   # simulação pós-roteamento (netlist + SDF), ~30 min
 python3 tools/relatorio.py           # docs/relatorio.html e .pdf (Chrome headless)
 tools/empacotar.sh                   # entrega/ENG4448_TF_2210442_2211700.zip
 ```
@@ -142,6 +141,7 @@ tools/empacotar.sh                   # entrega/ENG4448_TF_2210442_2211700.zip
 - `tb_ram` e `tb_main` usam o programa gravado em `rtl/RAM_8x256.vhd` (nome em `tb/dados/carregado.txt`). Trocar a RAM à mão sem `carregar` quebra esses dois.
 - ISim: leitura de arquivo em valor inicial de `signal`/`constant` ocorre no `fuse`; para trocar dados sem recompilar, ler dentro de um `process`. VHDL-93: sem `when ... else` dentro de processo.
 - O `nasm.exe` precisa de pseudo-terminal no Wine (`script -qc "wine nasm.exe ..." /dev/null`); sem isso falha com `Invalid handle`. Ele **não** acusa valores acima de 255 nem aceita `@símbolo` em `.byte`; `cpu8.py` confere tudo e compara byte a byte.
+- Simulação pós-roteamento (netlist do `netgen` com SDF) **não é viável** aqui: o ISim da licença WebPACK (modo Lite) passa a rodar degradado quando o netlist excede o limite de tamanho (a RAM vira 2048 FFs). Tentado em 27/11; em 30 min o simulador usou só 11 s de CPU. A verificação de hardware fica na placa.
 - A gravação na placa é feita por uma pessoa; um agente não deve afirmar que algo "funciona na placa" sem essa confirmação.
 
 ## Referências: o que aproveitar
